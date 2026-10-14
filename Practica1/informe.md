@@ -1,6 +1,7 @@
-
 <p align="center">
-  <img src="img/EPN-color.png" alt="Escudo de la Escuela Politécnica Nacional" width="150">
+
+  <img src="Figuras/EPN-color.png" alt="Escudo de la Escuela Politécnica Nacional" width="150">
+
 </p>
 
 <h1 align="center">Escuela Politécnica Nacional</h1>
@@ -12,14 +13,16 @@
 **Integrantes:**
 
 - Arroyo Juan
+
 - Echeverria Gabriela
+
 - Sarmiento Néstor
+
 - Villavicencio Michelle
 
 **Fecha:** 13/10/2026
 
 ---
-
 
 ## Índice de contenidos
 
@@ -27,36 +30,31 @@
 2. [Objetivos](#2-objetivos)
    - [Objetivo general](#21-objetivo-general)
    - [Objetivos específicos](#22-objetivos-específicos)
-3. [Herramientas y tecnologías utilizadas](#3-herramientas-y-tecnologías-utilizadas)
-4. [Fuentes de datos utilizadas](#4-fuentes-de-datos-utilizadas)
-   - [Flujo 1: Datos de estudiantes](#41-flujo-1-datos-de-estudiantes)
-   - [Flujo 2: Fuentes de datos heterogéneas](#42-flujo-2-fuentes-de-datos-heterogéneas)
-5. [Problemas identificados en los datos](#5-problemas-identificados-en-los-datos)
-   - [Problemas del flujo 1](#51-problemas-del-flujo-1)
-   - [Problemas del flujo 2](#52-problemas-del-flujo-2)
-6. [Transformaciones aplicadas](#6-transformaciones-aplicadas)
-   - [Transformaciones del flujo 1](#61-transformaciones-del-flujo-1)
-   - [Transformaciones del flujo 2](#62-transformaciones-del-flujo-2)
-7. [Desarrollo de los flujos ETL](#7-desarrollo-de-los-flujos-etl)
-   - [Flujo 1: Limpieza y validación de estudiantes](#71-flujo-1-limpieza-y-validación-de-estudiantes)
-   - [Flujo 2: Integración de fuentes de datos](#72-flujo-2-integración-de-fuentes-de-datos)
-8. [Evidencias y resultados](#8-evidencias-y-resultados)
-   - [Resultados del flujo 1](#81-resultados-del-flujo-1)
-   - [Resultados del flujo 2](#82-resultados-del-flujo-2)
-9. [Relación con una arquitectura Data Warehouse](#9-relación-con-una-arquitectura-data-warehouse)
-10. [Conclusiones](#10-conclusiones)
-11. [Referencias bibliográficas](#11-referencias-bibliográficas)
-12. [Declaración de uso de inteligencia artificial](#12-declaración-de-uso-de-inteligencia-artificial)
+3. [Fuentes de datos utilizadas](#3-fuentes-de-datos-utilizadas)
+   - [Flujo 1: Datos de estudiantes](#31-flujo-1-datos-de-estudiantes)
+   - [Flujo 2: Fuentes de datos heterogéneas](#32-flujo-2-fuentes-de-datos-heterogéneas)
+4. [Problemas identificados en los datos](#4-problemas-identificados-en-los-datos)
+   - [Problemas del flujo 1](#41-problemas-del-flujo-1)
+   - [Problemas del flujo 2](#42-problemas-del-flujo-2)
+5. [Transformaciones aplicadas](#5-transformaciones-aplicadas)
+   - [Transformaciones del flujo 1](#51-transformaciones-del-flujo-1)
+   - [Vista general del flujo ETL](#511-vista-general-del-flujo-etl)
+   - [Procesamiento de datos](#512-procesamiento-de-datos-transformación)
+   - [Transformaciones del flujo 2](#52-transformaciones-del-flujo-2)
+6. [Evidencias y resultados](#6-evidencias-y-resultados)
+   - [Resultados del flujo 1](#61-resultados-del-flujo-1)
+   - [Resultados del flujo 2](#62-resultados-del-flujo-2)
+7. [Relación con una arquitectura Data Warehouse](#7-relación-con-una-arquitectura-data-warehouse)
 
 ---
 
 ## 1. Introducción
 
-En el presente informe se documenta el desarrollo de dos procesos ETL (Extract, Transform, Load) utilizando la herramienta **Pentaho Data Integration (Spoon)**, con el propósito de aplicar técnicas de limpieza, transformación, validación e integración de datos.
+Este informe documenta el uso de **Pentaho Data Integration (Spoon)** para desarrollar procesos ETL de limpieza, validación e integración de datos.
 
-El primer flujo se enfoca en la limpieza y validación de registros de estudiantes, corrigiendo inconsistencias en nombres, apellidos y fechas. El segundo flujo contempla la integración de información proveniente de dos tipos diferentes de fuentes de datos.
+El primer flujo procesa registros de estudiantes con inconsistencias en nombres, apellidos y fechas. El segundo flujo está previsto para integrar datos de dos tipos de fuentes diferentes.
 
-Se describen las fuentes utilizadas, los problemas identificados, las transformaciones realizadas, los flujos desarrollados y los resultados obtenidos, así como su relación con una arquitectura de Data Warehouse.
+Se presentan las fuentes de datos, las transformaciones implementadas, las evidencias de ejecución y su relación con una arquitectura de Data Warehouse.
 
 ---
 
@@ -80,23 +78,22 @@ Desarrollar procesos ETL mediante Pentaho Data Integration (Spoon) para la limpi
 
 ### 3.1. Flujo 1: Datos de estudiantes
 
-Para el primer flujo ETL se utiliza el archivo [Caso Estudiantes Fechas Cedula.xls](Fuentes%20Datos/Caso%20Estudiantes%20Fechas%20Cedula.xls), una fuente de datos que contiene registros de estudiantes.
-
-Este archivo constituye la fuente de entrada para el proceso de limpieza y validación, en el que se trabajan principalmente los campos correspondientes a nombres, apellidos y fechas, con el propósito de corregir inconsistencias y obtener registros estandarizados.
+El primer flujo utiliza el archivo [Caso Estudiantes Fechas Cedula.xls](Fuentes%20Datos/Caso%20Estudiantes%20Fechas%20Cedula.xls), que contiene registros de estudiantes con campos de nombres, apellidos y fechas.
 
 ### 3.2. Flujo 2: Fuentes de datos heterogéneas
 
-Para el segundo flujo ETL se contempla el uso de **dos fuentes de datos de diferentes tipos**, con el objetivo de extraer e integrar información en un mismo proceso.
-
-Las fuentes específicas y sus características se documentarán una vez que sean seleccionadas, considerando sus formatos, estructuras y los datos que se utilizarán para la integración.
+El segundo flujo está previsto para integrar dos fuentes de datos de diferentes tipos. Sus características se documentarán cuando se seleccionen.
 
 ---
+
 ## 4. Problemas identificados en los datos
 
 ### 4.1. Problemas del flujo 1
 
 - **Inconsistencias en nombres y apellidos:** presencia de errores de escritura, caracteres acentuados incorrectos y diferencias en el uso de mayúsculas y minúsculas.
+
 - **Formatos de fecha inconsistentes:** registros con fechas que requieren estandarización para mantener un formato uniforme.
+
 - **Fechas no válidas:** valores que no cumplen las condiciones de validación establecidas y que deben separarse para su revisión.
 
 ### 4.2. Problemas del flujo 2
@@ -128,19 +125,23 @@ La Figura 1 presenta la secuencia de pasos implementados para procesar los datos
 **Figura 1. Flujo general de limpieza y validación de estudiantes.**
 
 <p align="center">
+
   <img src="Figuras/Figura1.png" alt="Flujo general ETL de estudiantes en Pentaho Spoon" width="850">
+
 </p>
 
 *Descripción: Flujo ETL desarrollado en Pentaho Spoon. El proceso inicia en Staging con la lectura del archivo Excel, continúa con la selección de campos (Select), la limpieza de nombres y apellidos y la validación de fechas. Finalmente, Filter rows clasifica los registros y los dirige hacia dos salidas independientes: Estudiantes Válidos y Estudiantes Observados.*
 
 #### 5.1.2. Procesamiento de datos (transformación)
 
-En esta etapa se aplican las reglas de limpieza y validación necesarias para corregir las inconsistencias identificadas en los registros de estudiantes.
+Las Figuras 2 a 4 muestran la configuración de las reglas de limpieza, validación y clasificación.
 
 **Figura 2. Configuración de la transformación Limpieza de Nombres.**
 
 <p align="center">
+
   <img src="Figuras/Figura2.png" alt="Configuración de limpieza de nombres en Pentaho Spoon" width="750">
+
 </p>
 
 *Descripción: Configuración del paso Modified JavaScript Value, donde se utiliza un script para corregir caracteres especiales y estandarizar nombres y apellidos. Se generan los campos `nombres_limpios` y `apellidos_limpios`.*
@@ -148,7 +149,9 @@ En esta etapa se aplican las reglas de limpieza y validación necesarias para co
 **Figura 3. Configuración de la transformación Validar Fechas.**
 
 <p align="center">
+
   <img src="Figuras/Figura3.png" alt="Configuración de validación de fechas en Pentaho Spoon" width="750">
+
 </p>
 
 *Descripción: Configuración del paso Modified JavaScript Value, donde se validan las fechas de admisión y de estado, comprobando que correspondan a fechas reales y estandarizando su formato a AAAA-MM-DD. Se generan los campos `fecha_admision_std`, `fecha_estado_std` y `fechas_validas`, este último para identificar si el registro cumple las validaciones.*
@@ -156,7 +159,9 @@ En esta etapa se aplican las reglas de limpieza y validación necesarias para co
 **Figura 4. Configuración del filtro de registros de estudiantes.**
 
 <p align="center">
+
   <img src="Figuras/Figura4.png" alt="Configuración del paso Filter rows en Pentaho Spoon" width="750">
+
 </p>
 
 *Descripción: Configuración del paso Filter rows, que evalúa el campo booleano `fechas_validas`. Los registros con valor verdadero (Y) se envían a Estudiantes Válidos, mientras que aquellos con valor falso se dirigen a Estudiantes Observados para su revisión.*
@@ -171,12 +176,14 @@ Las transformaciones correspondientes al segundo flujo se documentarán una vez 
 
 ### 6.1. Resultados del flujo 1
 
-La ejecución del flujo ETL permitió procesar los registros de estudiantes y generar los archivos de salida correspondientes.
+Las siguientes evidencias muestran la ejecución del primer flujo y el archivo de estudiantes válidos generado.
 
 **Figura 5. Registro de ejecución del flujo ETL de estudiantes.**
 
 <p align="center">
+
   <img src="Figuras/Figura5.png" alt="Registro de ejecución de la transformación en Pentaho Spoon" width="850">
+
 </p>
 
 *Descripción: Registro de ejecución de Pentaho Spoon que muestra el procesamiento de 99 registros y la finalización de la transformación sin errores (E=0). Se confirma la ejecución de los pasos de limpieza, validación, clasificación y generación de archivos Excel.*
@@ -184,7 +191,9 @@ La ejecución del flujo ETL permitió procesar los registros de estudiantes y ge
 **Figura 6. Archivo Excel generado con los registros de estudiantes válidos.**
 
 <p align="center">
+
   <img src="Figuras/Figura6.png" alt="Resultados de estudiantes válidos en Excel" width="850">
+
 </p>
 
 *Descripción: Archivo `estudiantes_validos.xls` generado por el flujo ETL. Se observan los registros procesados con los campos `nombres_limpios`, `apellidos_limpios`, `fecha_admision_std` y `fecha_estado_std`, además del indicador `fechas_validas` con valor VERDADERO, que confirma el cumplimiento de las condiciones de validación de fechas.*
@@ -197,8 +206,6 @@ Las evidencias y resultados del segundo flujo se incorporarán una vez desarroll
 
 ## 7. Relación con una arquitectura Data Warehouse
 
-El proceso desarrollado se relaciona con una arquitectura de Data Warehouse porque permite preparar datos confiables antes de incorporarlos a un repositorio centralizado. La limpieza de nombres, la estandarización de fechas y la identificación de registros observados contribuyen a mejorar la calidad de la información que posteriormente podría utilizarse para el análisis.
+En una arquitectura de **Data Warehouse**, el proceso desarrollado correspondería a la preparación y el control de calidad de los datos antes de incorporarlos a un repositorio centralizado. Los registros válidos podrían alimentar análisis e indicadores, mientras que los observados quedarían separados para su revisión, evitando incorporar información inconsistente.
 
-Dentro de esta arquitectura, los datos procesados representarían una fuente de información depurada, mientras que los registros observados permitirían identificar inconsistencias que deben corregirse antes de su integración. Esto favorece la consistencia de los datos y reduce el riesgo de obtener resultados incorrectos en reportes e indicadores de Business Intelligence.
-
-Aunque el flujo genera archivos Excel y no realiza una carga directa a un Data Warehouse, constituye una etapa previa de preparación y control de calidad de los datos, necesaria para construir una base de información adecuada para el análisis.
+En esta práctica, la salida se genera en archivos Excel; **no se realizó una carga directa a un Data Warehouse**. Por tanto, el flujo demuestra una etapa previa a esa integración.
