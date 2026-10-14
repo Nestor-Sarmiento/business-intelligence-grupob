@@ -386,3 +386,23 @@ Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in chara
 2026-10-13 15:37:11.746 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
 2026-10-13 15:37:11.750 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
 2026-10-13 15:37:11.750 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.691 INFO  <Thread-24> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 21:22:06.780 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:22:06.817 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 21:22:06.820 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.849 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:22:06.870 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.883 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.887 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.926 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 21:22:06.936 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.168 INFO  <Thread-47> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 21:23:26.210 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:23:26.246 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 21:23:26.249 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:23:26.250 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.259 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.266 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.269 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.273 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 21:23:26.275 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)

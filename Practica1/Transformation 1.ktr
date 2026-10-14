@@ -492,7 +492,7 @@
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/Salidas Obtenidas/estudiantes_observados.xls</name>
+      <name>${Internal.Entry.Current.Directory}/Salidas Obtenidas/estudiantes_observados</name>
       <extention>xls</extention>
       <create_parent>N</create_parent>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
@@ -560,7 +560,7 @@
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/Salidas Obtenidas/estudiantes_validos.xls</name>
+      <name>${Internal.Entry.Current.Directory}/Salidas Obtenidas/estudiantes_validos</name>
       <extention>xls</extention>
       <create_parent>N</create_parent>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>

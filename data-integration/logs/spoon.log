@@ -1,0 +1,30 @@
+2026-10-13 21:22:06.594 - Spoon - Transformation opened.
+2026-10-13 21:22:06.595 - Spoon - Launching transformation [Transformation 1]...
+2026-10-13 21:22:06.596 - Spoon - Started the transformation execution.
+2026-10-13 21:22:06.690 - Transformation 1 - Dispatching started for transformation [Transformation 1]
+2026-10-13 21:22:06.696 - Carte - Installing timer to purge stale objects after 1440 minutes.
+ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...
+2026-10-13 21:22:06.779 - Limpieza de Nombres.0 - Optimization level set to 9.
+2026-10-13 21:22:06.816 - Staging.0 - Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 21:22:06.820 - Select.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.849 - Validar Fechas.0 - Optimization level set to 9.
+2026-10-13 21:22:06.870 - Limpieza de Nombres.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.883 - Validar Fechas.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.887 - Filter rows.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.926 - Estudiantes Observados.0 - Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 21:22:06.935 - Estudiantes Válidos.0 - Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.936 - Spoon - The transformation has finished!!
+2026-10-13 21:23:26.152 - Spoon - Transformation opened.
+2026-10-13 21:23:26.152 - Spoon - Launching transformation [Transformation 1]...
+2026-10-13 21:23:26.152 - Spoon - Started the transformation execution.
+2026-10-13 21:23:26.168 - Transformation 1 - Dispatching started for transformation [Transformation 1]
+2026-10-13 21:23:26.210 - Limpieza de Nombres.0 - Optimization level set to 9.
+2026-10-13 21:23:26.246 - Staging.0 - Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 21:23:26.249 - Validar Fechas.0 - Optimization level set to 9.
+2026-10-13 21:23:26.250 - Select.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.259 - Limpieza de Nombres.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.266 - Validar Fechas.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.269 - Filter rows.0 - Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.273 - Estudiantes Observados.0 - Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 21:23:26.274 - Estudiantes Válidos.0 - Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.275 - Spoon - The transformation has finished!!
