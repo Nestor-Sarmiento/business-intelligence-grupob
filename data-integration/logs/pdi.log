@@ -406,3 +406,18 @@ Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in chara
 2026-10-13 21:23:26.269 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
 2026-10-13 21:23:26.273 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
 2026-10-13 21:23:26.275 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 22:30:20.362 INFO  <ModalContext> [/Transformation 2.ktr]  Dispatching started for transformation [/Transformation 2]
+2026-10-13 22:30:20.388 INFO  </Transformation 2 - Fuente Excel> [/Transformation 2.ktr]  Finished processing (I=12, O=0, R=0, W=12, U=0, E=0)
+2026-10-13 22:30:20.392 INFO  </Transformation 2 - dummy> [/Transformation 2.ktr]  Finished processing (I=0, O=0, R=12, W=12, U=0, E=0)
+2026-10-13 22:32:57.650 INFO  <ModalContext> [/Transformation 2.ktr]  Dispatching started for transformation [/Transformation 2]
+2026-10-13 22:32:57.675 INFO  </Transformation 2 - Fuente JSON> [/Transformation 2.ktr]  Finished processing (I=8, O=0, R=0, W=8, U=0, E=0)
+2026-10-13 22:32:57.679 INFO  </Transformation 2 - dummy> [/Transformation 2.ktr]  Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2026-10-13 22:45:34.731 INFO  <Thread-123> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Dispatching started for transformation [Transformation 2]
+2026-10-13 22:45:34.736 INFO  <Transformation 2 - Fuente JSON> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=8, O=0, R=0, W=8, U=0, E=0)
+2026-10-13 22:45:34.740 INFO  <Transformation 2 - Fuente Excel> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=12, O=0, R=0, W=12, U=0, E=0)
+2026-10-13 22:45:35.046 INFO  <Transformation 2 - Unificacion de estudiantes> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=0, O=0, R=20, W=20, U=0, E=0)
+2026-10-13 22:45:35.048 INFO  <Transformation 2 - Limpieza de Textos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=0, O=0, R=20, W=20, U=0, E=0)
+2026-10-13 22:45:35.051 INFO  <Transformation 2 - Estandarizar estados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=0, O=0, R=20, W=20, U=0, E=0)
+2026-10-13 22:45:35.053 INFO  <Transformation 2 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=0, O=0, R=20, W=20, U=0, E=0)
+2026-10-13 22:45:35.057 INFO  <Transformation 2 - Estudiantes Para Revisión> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=0, O=2, R=1, W=1, U=0, E=0)
+2026-10-13 22:45:35.057 INFO  <Transformation 2 - Estudiantes Procesados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 2.ktr]  Finished processing (I=0, O=20, R=19, W=19, U=0, E=0)

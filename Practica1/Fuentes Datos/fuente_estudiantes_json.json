@@ -1,0 +1,76 @@
+{
+  "estudiantes": [
+    {
+      "id_estudiante": "J013",
+      "nombres": "maría josé ",
+      "apellidos": "  salazar",
+      "modalidad": "Presencial",
+      "estado": "graduado",
+      "fecha_registro": "2026-06-01",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J014",
+      "nombres": "SEBASTIÁN",
+      "apellidos": "cruz",
+      "modalidad": "Distancia",
+      "estado": "egr",
+      "fecha_registro": "2026-06-06",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J015",
+      "nombres": "  paula",
+      "apellidos": "VARGAS  ",
+      "modalidad": "Semi Presencial",
+      "estado": "GRD",
+      "fecha_registro": "2026-06-12",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J016",
+      "nombres": "DANIELA",
+      "apellidos": "torres",
+      "modalidad": "PRESENCIAL",
+      "estado": "matriculada",
+      "fecha_registro": "2026-06-18",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J017",
+      "nombres": " gabriel ",
+      "apellidos": "  espinoza",
+      "modalidad": "distancia",
+      "estado": "EGRESADO",
+      "fecha_registro": "2026-07-02",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J018",
+      "nombres": "ISABEL",
+      "apellidos": "MARTÍNEZ",
+      "modalidad": "Presencial",
+      "estado": "GRADUADA",
+      "fecha_registro": "2026-07-15",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J019",
+      "nombres": "tomás",
+      "apellidos": "LÓPEZ",
+      "modalidad": "Semi Presencial",
+      "estado": "MATRICULADO",
+      "fecha_registro": "2026-07-23",
+      "origen": "JSON"
+    },
+    {
+      "id_estudiante": "J020",
+      "nombres": "  lucas  ",
+      "apellidos": "  acuña  ",
+      "modalidad": "Distancia",
+      "estado": "PENDIENTE",
+      "fecha_registro": "2026-08-04",
+      "origen": "JSON"
+    }
+  ]
+}
