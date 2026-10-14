@@ -1,13 +1,14 @@
+![[img/EPN-blanco.png]]
 # Escuela Politécnica Nacional
 ## Business Intelligence
 
 **Curso:** GR2SW
 
 **Integrantes:**
-- Juan Arroyo
-- Gabriela Echeverria
-- Nestor Sarmiento
-- Michelle Villavicencio
+- Arroyo Juan
+- Echeverria Gabriela
+- Sarmiento Néstor
+- Villavicencio Michelle
 
 **Fecha:** 13/10/2026
 
