@@ -1,0 +1,408 @@
+2026-10-13 09:44:34.011 INFO  <ModalContext> [/Limpieza de Nombres - PREVIEW.ktr]  Dispatching started for transformation [/Limpieza de Nombres - PREVIEW]
+2026-10-13 09:44:34.026 INFO  </Limpieza de Nombres - PREVIEW - ## TEST DATA ##> [/Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=0, W=10, U=0, E=0)
+2026-10-13 09:44:34.030 INFO  </Limpieza de Nombres - PREVIEW - dummy> [/Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2026-10-13 09:44:40.230 INFO  <ModalContext> [Limpieza de Nombres - PREVIEW.ktr]  Dispatching started for transformation [Limpieza de Nombres - PREVIEW]
+2026-10-13 09:44:40.232 INFO  <Limpieza de Nombres - PREVIEW - ## TEST DATA ##> [Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=0, W=10, U=0, E=0)
+2026-10-13 09:44:40.233 INFO  <Limpieza de Nombres - PREVIEW - Limpieza de Nombres> [Limpieza de Nombres - PREVIEW.ktr]  Optimization level set to 9.
+2026-10-13 09:44:40.251 INFO  <Limpieza de Nombres - PREVIEW - Limpieza de Nombres> [Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2026-10-13 09:54:27.078 INFO  <Thread-81> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 09:54:27.141 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 09:54:27.150 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 09:54:27.185 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 09:54:27.190 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:54:27.200 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:54:27.209 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:54:27.212 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:54:27.246 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 09:54:27.256 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 09:56:17.266 INFO  <Thread-100> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 09:56:17.309 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 09:56:17.346 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 09:56:17.346 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 09:56:17.349 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:56:17.356 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:56:17.366 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:56:17.369 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:56:17.372 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 09:56:17.377 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 09:59:53.766 INFO  <main> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 09:59:53.819 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 09:59:53.840 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 09:59:53.841 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 09:59:53.843 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 09:59:53.848 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:00:47.965 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=5, W=4, U=0, E=0)
+2026-10-13 10:00:47.967 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=5, R=4, W=3, U=0, E=0)
+2026-10-13 10:00:47.968 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 10:00:48.052 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=11, W=11, U=0, E=0)
+2026-10-13 10:01:34.330 INFO  <main> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 10:01:34.381 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:01:34.419 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 10:01:34.420 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:01:34.422 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:01:34.427 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:05:34.215 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=5, W=4, U=0, E=0)
+2026-10-13 10:05:34.217 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=4, R=3, W=2, U=0, E=0)
+2026-10-13 10:05:34.218 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 10:05:34.259 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=11, W=11, U=0, E=0)
+2026-10-13 10:06:11.223 INFO  <main> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 10:06:11.274 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:06:11.312 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 10:06:11.313 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:06:11.315 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:11.320 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:11.333 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:11.336 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:11.338 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 10:06:11.341 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:24.828 INFO  <Thread-191> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 10:06:24.873 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:06:24.912 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 10:06:24.914 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:06:24.915 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:24.920 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:24.930 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:24.933 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:06:24.936 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 10:06:24.937 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 10:15:25.429 INFO  <ModalContext> [/Limpieza de Nombres - PREVIEW.ktr]  Dispatching started for transformation [/Limpieza de Nombres - PREVIEW]
+2026-10-13 10:15:25.430 INFO  </Limpieza de Nombres - PREVIEW - ## TEST DATA ##> [/Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=0, W=10, U=0, E=0)
+2026-10-13 10:15:25.433 INFO  </Limpieza de Nombres - PREVIEW - dummy> [/Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2026-10-13 10:15:53.895 INFO  <ModalContext> [/Limpieza de Nombres - PREVIEW.ktr]  Dispatching started for transformation [/Limpieza de Nombres - PREVIEW]
+2026-10-13 10:15:53.896 INFO  </Limpieza de Nombres - PREVIEW - ## TEST DATA ##> [/Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=0, W=10, U=0, E=0)
+2026-10-13 10:15:53.899 INFO  </Limpieza de Nombres - PREVIEW - dummy> [/Limpieza de Nombres - PREVIEW.ktr]  Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2026-10-13 10:50:06.654 INFO  <Thread-25> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 10:50:06.775 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:50:06.803 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 10:50:06.806 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:50:06.835 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 10:50:06.850 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:50:06.862 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:50:06.866 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 10:50:06.914 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 10:50:06.924 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 11:59:52.195 INFO  <Thread-46> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 11:59:52.248 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 11:59:52.283 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 11:59:52.285 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 11:59:52.286 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 11:59:52.292 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 11:59:52.300 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 11:59:52.303 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 11:59:52.307 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 11:59:52.309 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 12:29:43.684 INFO  <Thread-69> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 12:29:43.738 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:29:43.774 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 12:29:43.777 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:29:43.777 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:29:43.790 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:29:43.796 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:29:43.799 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:29:43.803 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:29:43.803 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 12:35:00.201 INFO  <Thread-88> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 12:35:00.252 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:35:00.283 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 12:35:00.286 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:35:00.289 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Unexpected error
+2026-10-13 12:35:00.289 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  org.pentaho.di.core.exception.KettleValueException: 
+Javascript error: 
+SyntaxError: invalid range in character class (script#64)
+
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:467)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.processRow(ScriptValuesMod.java:539)
+	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:54)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in character class (script#64)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4280)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4258)
+	at org.mozilla.javascript.regexp.NativeRegExp.addCharacterToCharSet(NativeRegExp.java:1502)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSetImpl(NativeRegExp.java:1716)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSet(NativeRegExp.java:1543)
+	at org.mozilla.javascript.regexp.NativeRegExp.classMatcher(NativeRegExp.java:1752)
+	at org.mozilla.javascript.regexp.NativeRegExp.simpleMatch(NativeRegExp.java:1926)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeREBytecode(NativeRegExp.java:1968)
+	at org.mozilla.javascript.regexp.NativeRegExp.matchRegExp(NativeRegExp.java:2416)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeRegExp(NativeRegExp.java:2447)
+	at org.mozilla.javascript.regexp.RegExpImpl.matchOrReplace(RegExpImpl.java:197)
+	at org.mozilla.javascript.regexp.RegExpImpl.action(RegExpImpl.java:111)
+	at org.mozilla.javascript.NativeString.execIdCall(NativeString.java:447)
+	at org.mozilla.javascript.IdFunctionObject.call(IdFunctionObject.java:100)
+	at org.mozilla.javascript.optimizer.OptRuntime.call2(OptRuntime.java:55)
+	at org.mozilla.javascript.gen.script_7._c_generarClave_1(script:64)
+	at org.mozilla.javascript.gen.script_7._c_corregirPalabra_3(script:87)
+	at org.mozilla.javascript.gen.script_7._c_limpiarTexto_4(script:124)
+	at org.mozilla.javascript.gen.script_7.call(script)
+	at org.mozilla.javascript.optimizer.OptRuntime.callName(OptRuntime.java:76)
+	at org.mozilla.javascript.gen.script_7._c_script_0(script:139)
+	at org.mozilla.javascript.gen.script_7.call(script)
+	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:412)
+	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3578)
+	at org.mozilla.javascript.gen.script_7.call(script)
+	at org.mozilla.javascript.gen.script_7.exec(script)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:379)
+	... 3 more
+
+2026-10-13 12:35:00.290 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2026-10-13 12:35:00.290 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation detected one or more steps with errors.
+2026-10-13 12:35:00.290 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation is killing the other steps!
+2026-10-13 12:35:00.293 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:35:00.293 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:35:00.465 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:35:00.465 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:35:00.467 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:36:35.795 INFO  <Thread-107> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 12:36:35.874 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 12:36:35.874 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:36:35.878 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:36:35.878 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Unexpected error
+2026-10-13 12:36:35.878 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  org.pentaho.di.core.exception.KettleValueException: 
+Javascript error: 
+SyntaxError: invalid range in character class (script#64)
+
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:467)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.processRow(ScriptValuesMod.java:539)
+	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:54)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in character class (script#64)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4280)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4258)
+	at org.mozilla.javascript.regexp.NativeRegExp.addCharacterToCharSet(NativeRegExp.java:1502)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSetImpl(NativeRegExp.java:1716)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSet(NativeRegExp.java:1543)
+	at org.mozilla.javascript.regexp.NativeRegExp.classMatcher(NativeRegExp.java:1752)
+	at org.mozilla.javascript.regexp.NativeRegExp.simpleMatch(NativeRegExp.java:1926)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeREBytecode(NativeRegExp.java:1968)
+	at org.mozilla.javascript.regexp.NativeRegExp.matchRegExp(NativeRegExp.java:2416)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeRegExp(NativeRegExp.java:2447)
+	at org.mozilla.javascript.regexp.RegExpImpl.matchOrReplace(RegExpImpl.java:197)
+	at org.mozilla.javascript.regexp.RegExpImpl.action(RegExpImpl.java:111)
+	at org.mozilla.javascript.NativeString.execIdCall(NativeString.java:447)
+	at org.mozilla.javascript.IdFunctionObject.call(IdFunctionObject.java:100)
+	at org.mozilla.javascript.optimizer.OptRuntime.call2(OptRuntime.java:55)
+	at org.mozilla.javascript.gen.script_8._c_generarClave_1(script:64)
+	at org.mozilla.javascript.gen.script_8._c_corregirPalabra_3(script:87)
+	at org.mozilla.javascript.gen.script_8._c_limpiarTexto_4(script:124)
+	at org.mozilla.javascript.gen.script_8.call(script)
+	at org.mozilla.javascript.optimizer.OptRuntime.callName(OptRuntime.java:76)
+	at org.mozilla.javascript.gen.script_8._c_script_0(script:139)
+	at org.mozilla.javascript.gen.script_8.call(script)
+	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:412)
+	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3578)
+	at org.mozilla.javascript.gen.script_8.call(script)
+	at org.mozilla.javascript.gen.script_8.exec(script)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:379)
+	... 3 more
+
+2026-10-13 12:36:35.879 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2026-10-13 12:36:35.879 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation detected one or more steps with errors.
+2026-10-13 12:36:35.879 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation is killing the other steps!
+2026-10-13 12:36:35.881 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:36:35.881 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:36:36.055 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:36:36.056 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:36:36.059 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:39:32.851 INFO  <Thread-126> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 12:39:32.917 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:39:32.934 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 12:39:32.937 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:39:32.938 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Unexpected error
+2026-10-13 12:39:32.938 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  org.pentaho.di.core.exception.KettleValueException: 
+Javascript error: 
+SyntaxError: invalid range in character class (script#64)
+
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:467)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.processRow(ScriptValuesMod.java:539)
+	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:54)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in character class (script#64)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4280)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4258)
+	at org.mozilla.javascript.regexp.NativeRegExp.addCharacterToCharSet(NativeRegExp.java:1502)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSetImpl(NativeRegExp.java:1716)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSet(NativeRegExp.java:1543)
+	at org.mozilla.javascript.regexp.NativeRegExp.classMatcher(NativeRegExp.java:1752)
+	at org.mozilla.javascript.regexp.NativeRegExp.simpleMatch(NativeRegExp.java:1926)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeREBytecode(NativeRegExp.java:1968)
+	at org.mozilla.javascript.regexp.NativeRegExp.matchRegExp(NativeRegExp.java:2416)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeRegExp(NativeRegExp.java:2447)
+	at org.mozilla.javascript.regexp.RegExpImpl.matchOrReplace(RegExpImpl.java:197)
+	at org.mozilla.javascript.regexp.RegExpImpl.action(RegExpImpl.java:111)
+	at org.mozilla.javascript.NativeString.execIdCall(NativeString.java:447)
+	at org.mozilla.javascript.IdFunctionObject.call(IdFunctionObject.java:100)
+	at org.mozilla.javascript.optimizer.OptRuntime.call2(OptRuntime.java:55)
+	at org.mozilla.javascript.gen.script_9._c_generarClave_1(script:64)
+	at org.mozilla.javascript.gen.script_9._c_corregirPalabra_3(script:87)
+	at org.mozilla.javascript.gen.script_9._c_limpiarTexto_4(script:124)
+	at org.mozilla.javascript.gen.script_9.call(script)
+	at org.mozilla.javascript.optimizer.OptRuntime.callName(OptRuntime.java:76)
+	at org.mozilla.javascript.gen.script_9._c_script_0(script:139)
+	at org.mozilla.javascript.gen.script_9.call(script)
+	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:412)
+	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3578)
+	at org.mozilla.javascript.gen.script_9.call(script)
+	at org.mozilla.javascript.gen.script_9.exec(script)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:379)
+	... 3 more
+
+2026-10-13 12:39:32.938 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2026-10-13 12:39:32.939 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation detected one or more steps with errors.
+2026-10-13 12:39:32.939 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation is killing the other steps!
+2026-10-13 12:39:32.941 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:39:32.942 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:39:33.111 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:39:33.111 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:39:33.115 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:40:16.693 INFO  <main> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 12:40:16.744 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:40:16.779 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 12:40:16.783 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Unexpected error
+2026-10-13 12:40:16.783 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  org.pentaho.di.core.exception.KettleValueException: 
+Javascript error: 
+SyntaxError: invalid range in character class (script#64)
+
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:467)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.processRow(ScriptValuesMod.java:539)
+	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:54)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in character class (script#64)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4280)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4258)
+	at org.mozilla.javascript.regexp.NativeRegExp.addCharacterToCharSet(NativeRegExp.java:1502)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSetImpl(NativeRegExp.java:1716)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSet(NativeRegExp.java:1543)
+	at org.mozilla.javascript.regexp.NativeRegExp.classMatcher(NativeRegExp.java:1752)
+	at org.mozilla.javascript.regexp.NativeRegExp.simpleMatch(NativeRegExp.java:1926)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeREBytecode(NativeRegExp.java:1968)
+	at org.mozilla.javascript.regexp.NativeRegExp.matchRegExp(NativeRegExp.java:2416)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeRegExp(NativeRegExp.java:2447)
+	at org.mozilla.javascript.regexp.RegExpImpl.matchOrReplace(RegExpImpl.java:197)
+	at org.mozilla.javascript.regexp.RegExpImpl.action(RegExpImpl.java:111)
+	at org.mozilla.javascript.NativeString.execIdCall(NativeString.java:447)
+	at org.mozilla.javascript.IdFunctionObject.call(IdFunctionObject.java:100)
+	at org.mozilla.javascript.optimizer.OptRuntime.call2(OptRuntime.java:55)
+	at org.mozilla.javascript.gen.script_10._c_generarClave_1(script:64)
+	at org.mozilla.javascript.gen.script_10._c_corregirPalabra_3(script:87)
+	at org.mozilla.javascript.gen.script_10._c_limpiarTexto_4(script:124)
+	at org.mozilla.javascript.gen.script_10.call(script)
+	at org.mozilla.javascript.optimizer.OptRuntime.callName(OptRuntime.java:76)
+	at org.mozilla.javascript.gen.script_10._c_script_0(script:139)
+	at org.mozilla.javascript.gen.script_10.call(script)
+	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:412)
+	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3578)
+	at org.mozilla.javascript.gen.script_10.call(script)
+	at org.mozilla.javascript.gen.script_10.exec(script)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:379)
+	... 3 more
+
+2026-10-13 12:40:16.783 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2026-10-13 12:40:16.783 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation detected one or more steps with errors.
+2026-10-13 12:40:16.783 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation is killing the other steps!
+2026-10-13 12:40:16.783 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:40:16.786 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:40:16.786 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:40:16.959 ERROR <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:40:16.960 ERROR <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:40:17.009 ERROR <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:43:52.950 INFO  <Thread-164> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 12:43:52.994 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 12:43:53.030 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 12:43:53.033 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 12:43:53.033 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Unexpected error
+2026-10-13 12:43:53.033 ERROR <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  org.pentaho.di.core.exception.KettleValueException: 
+Javascript error: 
+SyntaxError: invalid range in character class (script#56)
+
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:467)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.processRow(ScriptValuesMod.java:539)
+	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:54)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.mozilla.javascript.EcmaError: SyntaxError: invalid range in character class (script#56)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4280)
+	at org.mozilla.javascript.ScriptRuntime.constructError(ScriptRuntime.java:4258)
+	at org.mozilla.javascript.regexp.NativeRegExp.addCharacterToCharSet(NativeRegExp.java:1502)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSetImpl(NativeRegExp.java:1716)
+	at org.mozilla.javascript.regexp.NativeRegExp.processCharSet(NativeRegExp.java:1543)
+	at org.mozilla.javascript.regexp.NativeRegExp.classMatcher(NativeRegExp.java:1752)
+	at org.mozilla.javascript.regexp.NativeRegExp.simpleMatch(NativeRegExp.java:1926)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeREBytecode(NativeRegExp.java:1968)
+	at org.mozilla.javascript.regexp.NativeRegExp.matchRegExp(NativeRegExp.java:2416)
+	at org.mozilla.javascript.regexp.NativeRegExp.executeRegExp(NativeRegExp.java:2447)
+	at org.mozilla.javascript.regexp.RegExpImpl.matchOrReplace(RegExpImpl.java:197)
+	at org.mozilla.javascript.regexp.RegExpImpl.action(RegExpImpl.java:111)
+	at org.mozilla.javascript.NativeString.execIdCall(NativeString.java:447)
+	at org.mozilla.javascript.IdFunctionObject.call(IdFunctionObject.java:100)
+	at org.mozilla.javascript.optimizer.OptRuntime.call2(OptRuntime.java:55)
+	at org.mozilla.javascript.gen.script_11._c_generarClave_1(script:56)
+	at org.mozilla.javascript.gen.script_11._c_corregirPalabra_3(script:87)
+	at org.mozilla.javascript.gen.script_11._c_limpiarTexto_4(script:124)
+	at org.mozilla.javascript.gen.script_11.call(script)
+	at org.mozilla.javascript.optimizer.OptRuntime.callName(OptRuntime.java:76)
+	at org.mozilla.javascript.gen.script_11._c_script_0(script:139)
+	at org.mozilla.javascript.gen.script_11.call(script)
+	at org.mozilla.javascript.ContextFactory.doTopCall(ContextFactory.java:412)
+	at org.mozilla.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3578)
+	at org.mozilla.javascript.gen.script_11.call(script)
+	at org.mozilla.javascript.gen.script_11.exec(script)
+	at org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesMod.addValues(ScriptValuesMod.java:379)
+	... 3 more
+
+2026-10-13 12:43:53.034 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=1, W=0, U=0, E=1)
+2026-10-13 12:43:53.034 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation detected one or more steps with errors.
+2026-10-13 12:43:53.034 WARN  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Transformation is killing the other steps!
+2026-10-13 12:43:53.036 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:43:53.036 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 12:43:53.210 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:43:53.210 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 12:43:53.213 ERROR <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Errors detected!
+2026-10-13 15:17:20.335 INFO  <Thread-21> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 15:17:20.453 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 15:17:20.486 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 15:17:20.489 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:17:20.519 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 15:17:20.541 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:17:20.555 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:17:20.558 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:17:20.607 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 15:17:20.617 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 15:32:10.815 INFO  <Thread-42> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 15:32:10.865 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 15:32:10.900 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 15:32:10.902 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:32:10.903 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 15:32:10.910 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:32:10.917 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:32:10.922 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:32:10.925 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 15:32:10.927 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 15:37:11.643 INFO  <Thread-64> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 15:37:11.691 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 15:37:11.726 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 15:37:11.730 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 15:37:11.731 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:37:11.737 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:37:11.743 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:37:11.746 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 15:37:11.750 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 15:37:11.750 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.691 INFO  <Thread-24> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 21:22:06.780 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:22:06.817 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 21:22:06.820 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.849 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:22:06.870 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.883 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.887 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:22:06.926 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 21:22:06.936 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.168 INFO  <Thread-47> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Dispatching started for transformation [Transformation 1]
+2026-10-13 21:23:26.210 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:23:26.246 INFO  <Transformation 1 - Staging> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=99, O=0, R=0, W=99, U=0, E=0)
+2026-10-13 21:23:26.249 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Optimization level set to 9.
+2026-10-13 21:23:26.250 INFO  <Transformation 1 - Select> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.259 INFO  <Transformation 1 - Limpieza de Nombres> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.266 INFO  <Transformation 1 - Validar Fechas> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.269 INFO  <Transformation 1 - Filter rows> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=0, R=99, W=99, U=0, E=0)
+2026-10-13 21:23:26.273 INFO  <Transformation 1 - Estudiantes Observados> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=1, R=0, W=0, U=0, E=0)
+2026-10-13 21:23:26.275 INFO  <Transformation 1 - Estudiantes Válidos> [/Users/davo/Desktop/Davo/EPN/Business Intelligence/Practica1/Transformation 1.ktr]  Finished processing (I=0, O=100, R=99, W=99, U=0, E=0)
