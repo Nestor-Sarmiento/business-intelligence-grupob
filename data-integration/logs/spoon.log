@@ -48,3 +48,5 @@ ERROR StatusLogger Log4j2 could not find a logging implementation. Please add lo
 2026-10-13 22:45:35.057 - Estudiantes Para Revisión.0 - Finished processing (I=0, O=2, R=1, W=1, U=0, E=0)
 2026-10-13 22:45:35.057 - Estudiantes Procesados.0 - Finished processing (I=0, O=20, R=19, W=19, U=0, E=0)
 2026-10-13 22:45:35.058 - Spoon - The transformation has finished!!
+2026-10-13 22:54:28.237 - Spoon - Spoon  has ended.
+stopping
