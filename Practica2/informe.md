@@ -96,7 +96,7 @@ La estructura de los datos están conformadas por un identificador del producto,
 
 ## 4. Problemas identificados en los datos
 
-### 4.1. Problemas del flujo 1
+### 4.1. Problemas del flujo
 
 - **Categorías no uniformes:** presencia de múltiples variantes, abreviaturas y diferencias en el uso de mayúsculas y minúsculas (como Herramientas, herramientas, Htas, Pintura, pintura, PINTURAS, etc.) que impiden una correcta clasificación de los productos.
 
