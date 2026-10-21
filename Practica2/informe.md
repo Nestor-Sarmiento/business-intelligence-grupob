@@ -102,7 +102,7 @@ La estructura de los datos están conformadas por un identificador del producto,
 
 - **Unidades de medida heterogéneas:** mezcla de nomenclaturas y abreviaturas distintas para referirse a la misma cantidad o presentación. Por ejemplo: 1 und, 1 unidad, 1u, 1 Lt, 1L, 1 litro, 1 rollo, 1 rl, entre otras.
 
-- **Precios con símbolos y formato de texto:** valores monetarios que incluyen caracteres adicionales (como el símbolo $) y están almacenados como cadenas de texto en lugar de un formato numérico.
+- **Precios con símbolos:** valores monetarios que incluyen caracteres adicionales (como el símbolo $).
 
 - **Tipos de datos inconsistentes:** campos de precios y cantidades que requieren un cambio de tipo de dato y limpieza para permitir cálculos y agregaciones adecuadas en la base de datos corporativa.
 
