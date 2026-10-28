@@ -8,7 +8,7 @@
 
 <h2 align="center">Business Intelligence</h2>
 
-<h3 align="center">Práctica 4: Implementación física de una dimensión para un modelo estrella en PostgreSQL</h3>
+
 
 **Curso:** GR2SW
 
@@ -1181,4 +1181,4 @@ stg_products y stg_ventas corresponden al área de staging, donde los datos se r
 
 ## 12. Declaración de uso de Inteligencia Artificial
 
-Se declara un uso estimado del **35 % de inteligencia artificial generativa** (Claude, de Anthropic) como apoyo en la redacción y organización del informe. El diseño del modelo, los scripts SQL, la carga de datos, las consultas, el diagrama en Power Pivot y las capturas fueron realizados por los integrantes del grupo.
+Se declara un uso estimado del 35 % de inteligencia artificial generativa  como apoyo en la redacción y organización del informe. El diseño del modelo, los scripts SQL, la carga de datos, las consultas, el diagrama en Power Pivot y las capturas fueron realizados por los integrantes del grupo.
