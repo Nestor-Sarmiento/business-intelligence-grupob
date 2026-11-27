@@ -24,8 +24,11 @@
 
 ---
 
+<a name="indice"></a>
 ## Índice
 
+- [Índice](#indice)
+- [Índice de figuras](#indice-de-figuras)
 - [1. Descripción del negocio y problema](#seccion-1)
 - [2. Objetivos](#seccion-2)
   - [2.1. Objetivo general](#seccion-3)
@@ -105,8 +108,6 @@
 - [12. Limitaciones y trabajo futuro](#seccion-77)
 - [13. Conclusiones](#seccion-78)
 - [14. Bibliografía](#seccion-79)
-
-- [Índice de figuras](#indice-de-figuras)
 
 <a name="indice-de-figuras"></a>
 ## Índice de figuras
@@ -1596,3 +1597,11 @@ Como mejora futura se propone establecer exportaciones periódicas estandarizada
 - Microsoft. (s. f.). *PostgreSQL connector*. Microsoft Learn. https://learn.microsoft.com/en-us/power-query/connectors/postgresql
 - Microsoft. (s. f.). *Data Analysis Expressions (DAX) reference*. Microsoft Learn. https://learn.microsoft.com/en-us/dax/
 - Grupo B, Business Intelligence. (2026). *Repositorio de prácticas y proyecto*. https://github.com/Nestor-Sarmiento/business-intelligence-grupob
+
+## Declaración de uso de Inteligencia Artificial
+
+Durante el desarrollo del proyecto se estima un uso del **30 % de Inteligencia Artificial (IA)** como herramienta de apoyo para la planificación y estructuración del proyecto, la resolución de consultas técnicas, la organización de la documentación y la redacción del informe final.
+
+Asimismo, se utilizó IA como apoyo en el diseño y personalización de los dashboards en Power BI, aplicando principios de interfaz y experiencia de usuario (UI/UX) para mejorar la presentación visual, la legibilidad, la navegación y la interpretación de los indicadores, evitando diseños genéricos y adaptándolos al contexto del negocio.
+
+Las sugerencias proporcionadas por la IA fueron revisadas, adaptadas y validadas por los integrantes del equipo, quienes fueron responsables de la implementación técnica, la ejecución del proceso ETL, la construcción del modelo dimensional, el desarrollo de los dashboards y la interpretación de los resultados obtenidos.
