@@ -26,21 +26,172 @@
 
 ## Índice
 
-1. [Descripción del negocio y problema](#1-descripción-del-negocio-y-problema)
-2. [Objetivos](#2-objetivos)
-3. [Fuentes de datos y problemas encontrados](#3-fuentes-de-datos-y-problemas-encontrados)
-4. [Preguntas de negocio](#4-preguntas-de-negocio)
-5. [Arquitectura y modelo dimensional](#5-arquitectura-y-modelo-dimensional)
-6. [Transformaciones y flujo ETL](#6-transformaciones-y-flujo-etl)
-7. [Validación y calidad de datos](#7-validación-y-calidad-de-datos)
-8. [Consultas SQL y resultados](#8-consultas-sql-y-resultados)
-9. [Implementación y dashboards en Power BI](#9-implementación-y-dashboards-en-power-bi)
-10. [Análisis OLAP](#10-análisis-olap)
-11. [Insights y recomendaciones](#11-insights-y-recomendaciones)
-12. [Limitaciones y trabajo futuro](#12-limitaciones-y-trabajo-futuro)
-13. [Conclusiones](#13-conclusiones)
-14. [Bibliografía](#14-bibliografía)
+- [1. Descripción del negocio y problema](#seccion-1)
+- [2. Objetivos](#seccion-2)
+  - [2.1. Objetivo general](#seccion-3)
+  - [2.2. Objetivos específicos](#seccion-4)
+- [3. Fuentes de datos y problemas encontrados](#seccion-5)
+  - [3.1. Fuentes de datos utilizadas](#seccion-6)
+  - [3.2. Problemas encontrados y tratamiento](#seccion-7)
+- [4. Preguntas de negocio](#seccion-8)
+- [5. Arquitectura y modelo dimensional](#seccion-9)
+  - [5.1. Arquitectura del Data Warehouse](#seccion-10)
+  - [5.2. Justificación del esquema de constelación](#seccion-11)
+  - [5.3. Granularidad y medidas](#seccion-12)
+  - [5.4. Dimensiones y jerarquías](#seccion-13)
+  - [5.5. Implementación física en PostgreSQL](#seccion-14)
+- [6. Transformaciones y flujo ETL](#seccion-15)
+  - [6.1. Configuración y extracción](#seccion-16)
+  - [6.2. Transformaciones aplicadas](#seccion-17)
+  - [6.3. Transformaciones de Pentaho](#seccion-18)
+    - [01_staging_clientes](#seccion-19)
+    - [02_staging_facturacion](#seccion-20)
+    - [03_staging_gps](#seccion-21)
+    - [04_dim_fecha](#seccion-22)
+    - [05_dim_cliente](#seccion-23)
+    - [06_dim_dispositivo](#seccion-24)
+    - [07_dim_grupo](#seccion-25)
+    - [08_fact_facturacion](#seccion-26)
+    - [09_fact_estado_gps](#seccion-27)
+  - [6.4. Job principal Intertel_ETL](#seccion-28)
+- [7. Validación y calidad de datos](#seccion-29)
+  - [7.1. Conteos y reconciliación](#seccion-30)
+  - [7.2. Integridad y consistencia](#seccion-31)
+  - [7.3. Resultados de calidad y auditoría](#seccion-32)
+- [8. Consultas SQL y resultados](#seccion-33)
+  - [8.1. Resumen de resultados comerciales](#seccion-34)
+  - [8.2. Resumen de resultados operativos](#seccion-35)
+  - [8.3. Detalle de consultas y trazabilidad](#seccion-36)
+    - [PN01. ¿Cuánto se ha facturado por año, trimestre y mes?](#seccion-37)
+    - [PN02. ¿Cómo evolucionó la facturación entre enero y octubre de 2025 y 2026?](#seccion-38)
+    - [PN03. ¿Cuáles son los diez clientes facturados con mayor importe?](#seccion-39)
+    - [PN04. ¿Qué porcentaje de facturación corresponde a los diez principales clientes?](#seccion-40)
+    - [PN05. ¿Cuál es el importe promedio de una factura?](#seccion-41)
+    - [PN06. ¿Cuántos nombres de clientes diferentes registran facturación cada mes?](#seccion-42)
+    - [PN07. ¿Qué meses tienen mayor y menor facturación?](#seccion-43)
+    - [PN08. ¿Con qué frecuencia se emiten facturas por nombre de cliente?](#seccion-44)
+    - [PN09. ¿Cuántos registros y claves de dispositivo aparecen en el reporte?](#seccion-45)
+    - [PN10. ¿Qué grupos concentran más registros de dispositivos?](#seccion-46)
+    - [PN11. ¿Qué proporción de registros tiene información GPS disponible?](#seccion-47)
+    - [PN12. ¿Qué grupos presentan más registros sin datos y qué proporción representan?](#seccion-48)
+    - [PN13. ¿Cuál es la antigüedad de la información GPS disponible?](#seccion-49)
+    - [PN14. ¿Qué grupos requieren revisión por registros con más de 30 días de antigüedad?](#seccion-50)
+    - [PN15. ¿Cuántos registros cuentan con coordenadas válidas?](#seccion-51)
+    - [PN16. ¿Qué proporción de facturas no coincide por nombre con el catálogo?](#seccion-52)
+    - [PN17. ¿Cuántos registros GPS carecen de grupo o SIM?](#seccion-53)
+    - [PN18. ¿Qué incidencias de calidad fueron detectadas en la última carga exitosa?](#seccion-54)
+- [9. Implementación y dashboards en Power BI](#seccion-55)
+  - [9.1. Conexión y modelo semántico](#seccion-56)
+  - [9.2. Medidas e indicadores](#seccion-57)
+    - [9.2.1. Medidas comerciales](#seccion-58)
+      - [Cantidad Facturas](#seccion-59)
+      - [Clientes Facturados](#seccion-60)
+      - [Ticket Promedio](#seccion-61)
+      - [Crecimiento Interanual](#seccion-62)
+      - [Concentracion Top 10](#seccion-63)
+      - [Facturas Sin Coincidencia](#seccion-64)
+      - [Porcentaje Facturas Sin Coincidencia](#seccion-65)
+    - [9.2.2. Medidas operativas GPS](#seccion-66)
+  - [9.3. Diseño UI/UX](#seccion-67)
+  - [9.4. Página 01 — Resumen ejecutivo](#seccion-68)
+  - [9.5. Página 02 — Análisis comercial](#seccion-69)
+  - [9.6. Página 03 — Análisis operativo GPS](#seccion-70)
+  - [9.7. Página 04 — Análisis multidimensional OLAP](#seccion-71)
+- [10. Análisis OLAP](#seccion-72)
+  - [10.1. Operaciones implementadas mediante SQL (ROLAP)](#seccion-73)
+  - [10.2. Operaciones interactivas en Power BI](#seccion-74)
+- [11. Insights y recomendaciones](#seccion-75)
+  - [11.1. Priorización sugerida](#seccion-76)
+- [12. Limitaciones y trabajo futuro](#seccion-77)
+- [13. Conclusiones](#seccion-78)
+- [14. Bibliografía](#seccion-79)
 
+- [Índice de figuras](#indice-de-figuras)
+
+<a name="indice-de-figuras"></a>
+## Índice de figuras
+
+- [Figura 1. Arquitectura del Data Warehouse](#figura-1)
+- [Figura 2. Modelo lógico de constelación](#figura-2)
+- [Figura 3. Modelo de constelación implementado en PostgreSQL](#figura-3)
+- [Figura 4. Base de datos intertel_bi](#figura-4)
+- [Figura 5. Esquemas staging, dw y audit](#figura-5)
+- [Figura 6. Tablas de staging](#figura-6)
+- [Figura 7. Dimensiones](#figura-7)
+- [Figura 8. Tablas de hechos](#figura-8)
+- [Figura 9. Tablas de auditoría](#figura-9)
+- [Figura 10. Restricciones de claves primarias y foráneas](#figura-10)
+- [Figura 11. Conexión JDBC de Pentaho a PostgreSQL (sin credenciales)](#figura-11)
+- [Figura 12. Parametrización de rutas de archivos](#figura-12)
+- [Figura 13. Transformación 01_staging_clientes en Pentaho](#figura-13)
+- [Figura 14. Transformación 02_staging_facturacion en Pentaho](#figura-14)
+- [Figura 15. Transformación 03_staging_gps en Pentaho](#figura-15)
+- [Figura 16. Transformación 04_dim_fecha en Pentaho](#figura-16)
+- [Figura 17. Transformación 05_dim_cliente en Pentaho](#figura-17)
+- [Figura 18. Transformación 06_dim_dispositivo en Pentaho](#figura-18)
+- [Figura 19. Transformación 09_fact_estado_gps en Pentaho](#figura-19)
+- [Figura 20. Flujo del Job Intertel_ETL](#figura-20)
+- [Figura 21. Job principal con transformaciones y rutas de control](#figura-21)
+- [Figura 22. Validación integral de la carga dimensional](#figura-22)
+- [Figura 23. Validación de consistencia de fechas y antigüedad GPS](#figura-23)
+- [Figura 24. Incidencias detectadas en la última carga exitosa](#figura-24)
+- [Figura 25. Historial de ejecuciones del ETL](#figura-25)
+- [Figura 26. Conteos de staging](#figura-26)
+- [Figura 27. Conteos de dimensiones](#figura-27)
+- [Figura 28. Conteos de tablas de hechos](#figura-28)
+- [Figura 29. Coincidencias por nombre en el catálogo](#figura-29)
+- [Figura 30. Disponibilidad de información SIM](#figura-30)
+- [Figura 31. PN01 — Facturación por período](#figura-31)
+- [Figura 32. PN02 — Crecimiento interanual](#figura-32)
+- [Figura 33. PN03 — Top 10 de clientes](#figura-33)
+- [Figura 34. PN04 — Concentración comercial](#figura-34)
+- [Figura 35. PN05 — Ticket promedio](#figura-35)
+- [Figura 36. PN06 — Clientes facturados por mes](#figura-36)
+- [Figura 37. PN07 — Mayor y menor facturación](#figura-37)
+- [Figura 38. PN08 — Frecuencia de facturación](#figura-38)
+- [Figura 39. PN09 — Total de registros GPS](#figura-39)
+- [Figura 40. PN10 — Dispositivos por grupo](#figura-40)
+- [Figura 41. PN11 — Disponibilidad GPS](#figura-41)
+- [Figura 42. PN12 — Grupos sin datos](#figura-42)
+- [Figura 43. PN13 — Antigüedad de registros GPS](#figura-43)
+- [Figura 44. PN14 — Grupos con registros antiguos](#figura-44)
+- [Figura 45. PN15 — Posiciones GPS válidas](#figura-45)
+- [Figura 46. PN16 — Facturas sin coincidencia](#figura-46)
+- [Figura 47. PN17 — Registros sin grupo o SIM](#figura-47)
+- [Figura 48. PN18 — Incidencias de calidad](#figura-48)
+- [Figura 49. Conexión a PostgreSQL en Power BI](#figura-49)
+- [Figura 50. Modelo semántico y cardinalidades](#figura-50)
+- [Figura 51. Jerarquía temporal](#figura-51)
+- [Figura 52. Medida DAX Facturacion Total](#figura-52)
+- [Figura 53. Dashboard final — Resumen ejecutivo](#figura-53)
+- [Figura 54. Dashboard final — Análisis comercial](#figura-54)
+- [Figura 55. Dashboard final — Análisis operativo GPS](#figura-55)
+- [Figura 56. Dashboard final — Análisis multidimensional OLAP](#figura-56)
+- [Figura 57. Roll-up ejecutado en PostgreSQL](#figura-57)
+- [Figura 58. Drill-down en PostgreSQL](#figura-58)
+- [Figura 59. Slice ejecutado en PostgreSQL](#figura-59)
+- [Figura 60. Dice ejecutado en PostgreSQL](#figura-60)
+- [Figura 61. Pivot ejecutado en PostgreSQL](#figura-61)
+- [Figura 62. Cube ejecutado en PostgreSQL](#figura-62)
+- [Figura 63. Grouping sets ejecutado en PostgreSQL](#figura-63)
+- [Figura 64. Drill-down: año a trimestre](#figura-64)
+- [Figura 65. Drill-down: trimestre a mes](#figura-65)
+- [Figura 66. Roll-up: retorno al nivel anual](#figura-66)
+- [Figura 67. Slice: cubo filtrado por año](#figura-67)
+- [Figura 68. Dice: combinación de filtros](#figura-68)
+- [Figura 69. Nivel anual inicial](#figura-69)
+- [Figura 70. Drill-down hasta fecha](#figura-70)
+- [Figura 71. Slice comercial](#figura-71)
+- [Figura 72. Dice comercial](#figura-72)
+- [Figura 73. Slice operativo por grupo](#figura-73)
+- [Figura 74. Dice operativo por grupo, estado y antigüedad](#figura-74)
+- [Figura 75. Priorización por porcentaje de ausencia de información](#figura-75)
+- [Figura 76. Cubo completo según el alcance de filtros](#figura-76)
+- [Figura 77. Detalle de una celda del cubo](#figura-77)
+
+---
+
+<a name="seccion-1"></a>
 ## 1. Descripción del negocio y problema
 
 Intertel ofrece servicios de localización y rastreo vehicular mediante GPS y comercializa planes de acceso a su plataforma. Durante la reunión inicial, el cliente indicó que atiende principalmente a cooperativas, que gestiona aproximadamente 700 vehículos y que su actividad se concentra en Cayambe y, en segundo lugar, Quito. Estas afirmaciones corresponden al contexto proporcionado por la empresa, no a indicadores geográficos verificados mediante el Data Warehouse.
@@ -51,12 +202,15 @@ La información comercial y operativa se encuentra dispersa en archivos exportad
 
 **Alcance:** análisis descriptivo de las facturas de la hoja principal de 2025–2026 y de la instantánea GPS del 19/11/2026. El proyecto se implementa localmente y no constituye un sistema de monitoreo GPS en tiempo real.
 
+<a name="seccion-2"></a>
 ## 2. Objetivos
 
+<a name="seccion-3"></a>
 ### 2.1. Objetivo general
 
 Desarrollar una solución de Business Intelligence para Intertel que integre, depure y analice datos comerciales y operativos mediante Pentaho, PostgreSQL y Power BI, con el fin de responder preguntas de negocio y apoyar la toma de decisiones.
 
+<a name="seccion-4"></a>
 ### 2.2. Objetivos específicos
 
 - Identificar las fuentes disponibles, sus limitaciones y las preguntas de negocio que pueden responderse.
@@ -66,8 +220,10 @@ Desarrollar una solución de Business Intelligence para Intertel que integre, de
 - Elaborar consultas SQL y visualizaciones interactivas que permitan análisis comercial, operativo y multidimensional.
 - Formular recomendaciones sustentadas en los resultados y distinguir las conclusiones verificadas de las hipótesis que requieren información adicional.
 
+<a name="seccion-5"></a>
 ## 3. Fuentes de datos y problemas encontrados
 
+<a name="seccion-6"></a>
 ### 3.1. Fuentes de datos utilizadas
 
 | Fuente | Contenido | Filas cargadas en staging | Uso |
@@ -77,7 +233,7 @@ Desarrollar una solución de Business Intelligence para Intertel que integre, de
 | `offline_device_report_2026_11_19.xls` | Dispositivo, grupo, SIM, hora, posición, velocidad, altitud, ángulo, duración, distancia, odómetro y horas del motor | 666 | Instantánea operativa y calidad de datos GPS |
 | `PLANES DE PLATAFORMA DE RASTREO VEHICULAR GPS.docx` | Planes Básico, Plus y Premium, tarifas y prestaciones | No aplica | Contexto comercial; sin relación individual con facturas o suscripciones |
 
-La hoja de cálculo de facturación contiene otras hojas; el alcance del ETL se restringió a la hoja principal seleccionada. Los conteos de staging no son necesariamente los conteos físicos de todas las filas de Excel, debido a encabezados, filas vacías y hojas excluidas. No se incorporaron las otras hojas sin validar su propósito y posibles solapamientos.
+La hoja de cálculo de facturación contiene otras hojas; el alcance del ETL se restringió a la hoja principal seleccionada. Los conteos de staging no son necesariamente los conteos físicos de todas las filas de Excel, debido a encabezados, filas vacías y hojas excluidas. No se incorporaron las otras hojas sin validar su propósito y posibles solapamientos. La estructura de las fuentes se documenta en las tablas anteriores y se materializa en las transformaciones y scripts del repositorio; no se reproducen capturas de los datos de origen.
 
 | Plan | Mensual (USD) | Anual (USD) | Instalación (USD) |
 |---|---:|---:|---:|
@@ -87,50 +243,7 @@ La hoja de cálculo de facturación contiene otras hojas; el alcance del ETL se 
 
 Las tarifas son las del documento suministrado, no precios inferidos de la facturación. No es válido deducir el plan de una factura por similitud de importe: puede incluir instalaciones, otros cargos o acuerdos particulares.
 
-<details><summary>Ver evidencias de las fuentes de datos</summary>
-
-> **Captura pendiente:** Fuente de clientes (anonimizada).
->
-> Archivo: `Intertel_BI/docs/capturas/01_fuentes/fuente_clientes.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Fuente de clientes (anonimizada)](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/01_fuentes/fuente_clientes.png)
--->
-
-*Fuente de clientes (anonimizada).*
-
-> **Captura pendiente:** Fuente de facturación (anonimizada).
->
-> Archivo: `Intertel_BI/docs/capturas/01_fuentes/fuente_facturacion.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Fuente de facturación (anonimizada)](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/01_fuentes/fuente_facturacion.png)
--->
-
-*Fuente de facturación (anonimizada).*
-
-> **Captura pendiente:** Fuente de dispositivos GPS (anonimizada).
->
-> Archivo: `Intertel_BI/docs/capturas/01_fuentes/fuente_dispositivos_gps.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Fuente de dispositivos GPS (anonimizada)](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/01_fuentes/fuente_dispositivos_gps.png)
--->
-
-*Fuente de dispositivos GPS (anonimizada).*
-
-> **Captura pendiente:** Catálogo de planes de Intertel.
->
-> Archivo: `Intertel_BI/docs/capturas/01_fuentes/catalogo_planes.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Catálogo de planes de Intertel](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/01_fuentes/catalogo_planes.png)
--->
-
-*Catálogo de planes de Intertel.*
-
-</details>
-
+<a name="seccion-7"></a>
 ### 3.2. Problemas encontrados y tratamiento
 
 | Problema | Tratamiento | Consecuencia analítica |
@@ -147,6 +260,7 @@ Las tarifas son las del documento suministrado, no precios inferidos de la factu
 | Coordenadas ausentes o inválidas | Validar rangos de latitud/longitud y guardar indicador booleano | No exponer ubicación ni inferir ciudad |
 | Datos sin detalle de planes, pagos o contratos | Excluir dimensiones y métricas que no pueden relacionarse | Evitar resultados especulativos |
 
+<a name="seccion-8"></a>
 ## 4. Preguntas de negocio
 
 Las preguntas se organizan en tres áreas. La numeración corresponde al script `05_intertel_consultas_negocio.sql` y se mantiene en las evidencias para asegurar trazabilidad.
@@ -171,8 +285,10 @@ Las preguntas se organizan en tres áreas. La numeración corresponde al script 
 | PN16 | ¿Qué proporción de facturas no coincide por nombre con el catálogo? | Calidad | Anillo de calidad comercial |
 | PN17 | ¿Cuántos registros GPS carecen de grupo o SIM? | Calidad | Tarjetas GPS y consulta SQL |
 
+<a name="seccion-9"></a>
 ## 5. Arquitectura y modelo dimensional
 
+<a name="seccion-10"></a>
 ### 5.1. Arquitectura del Data Warehouse
 
 Se adoptó una arquitectura local de tres capas en PostgreSQL: `staging` conserva la estructura de los archivos, `dw` contiene los hechos y dimensiones, y `audit` registra ejecuciones e incidencias. Pentaho orquesta la extracción y la carga; las funciones y vistas SQL realizan parte de las transformaciones. Power BI consume el modelo dimensional y aporta una capa semántica con relaciones, medidas y filtros.
@@ -191,8 +307,13 @@ flowchart LR
     I --> J[Dashboards y exploración OLAP]
 ```
 
+<a name="figura-1"></a>
+<p align="center"><strong>Figura 1. Arquitectura del Data Warehouse</strong></p>
+<p align="center"><em>Flujo de información desde los Excel, Pentaho y PostgreSQL hasta Power BI y las consultas SQL.</em></p>
+
 El catálogo de planes se emplea como contexto de negocio, no como una entrada del flujo de carga dimensional.
 
+<a name="seccion-11"></a>
 ### 5.2. Justificación del esquema de constelación
 
 La solución integra dos procesos de negocio con granos diferentes: facturación y estado de los registros GPS. Un modelo estrella único mezclaría facturas y registros operativos o forzaría relaciones sin respaldo en los archivos. Por ello se definieron dos tablas de hechos que comparten la dimensión fecha, conformando una constelación de hechos. Las dimensiones específicas se mantienen separadas para evitar multiplicación de filas y agregaciones incorrectas.
@@ -261,12 +382,18 @@ erDiagram
     }
 ```
 
-*Diagrama lógico elaborado a partir de las definiciones SQL. La evidencia siguiente corresponde al modelo físico implementado.*
+<a name="figura-2"></a>
+<p align="center"><strong>Figura 2. Modelo lógico de constelación</strong></p>
+<p align="center"><em>Relaciones de los dos hechos con las cuatro dimensiones y los distintos roles de fecha.</em></p>
 
-![Modelo de constelación implementado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/modeo_dimensional_constelacion.png)
+<a name="figura-3"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/modeo_dimensional_constelacion.png" alt="Modelo de constelación implementado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 3. Modelo de constelación implementado en PostgreSQL</strong></p>
+<p align="center"><em>Diagrama físico de la constelación con sus dimensiones y hechos relacionados.</em></p>
 
-*Modelo de constelación implementado en PostgreSQL.*
-
+<a name="seccion-12"></a>
 ### 5.3. Granularidad y medidas
 
 | Tabla de hechos | Granularidad | Medidas / atributos analíticos | Consideraciones |
@@ -276,6 +403,7 @@ erDiagram
 
 La facturación tiene granularidad de cabecera y no de detalle de productos, pues los archivos no contienen líneas de factura. La tabla GPS funciona como una instantánea periódica potencial; en la entrega solo existe una fecha de reporte analizada. La combinación `(fecha_reporte_sk, fila_origen)` impide duplicar la misma fila del reporte. `fecha_registro_sk` admite nulos cuando no existe fecha válida.
 
+<a name="seccion-13"></a>
 ### 5.4. Dimensiones y jerarquías
 
 | Dimensión | Clave primaria | Grano | Atributos principales | Filas |
@@ -287,6 +415,7 @@ La facturación tiene granularidad de cabecera y no de detalle de productos, pue
 
 La jerarquía temporal es Año → Trimestre → Mes → Fecha. Se genera un calendario continuo entre 2022 y 2026 para cubrir las fechas de los reportes y facturas. Esto no implica que existan facturas en todos esos años. La clave fecha usa el formato AAAAMMDD; las demás dimensiones emplean claves sustitutas numéricas.
 
+<a name="seccion-14"></a>
 ### 5.5. Implementación física en PostgreSQL
 
 La base `intertel_bi` contiene once tablas: tres de staging, seis dimensionales y dos de auditoría. El DDL `01_intertel_modelo.sql` establece PK, FK, restricciones `UNIQUE`, `NOT NULL`, `CHECK` e índices de acceso para los hechos. El script `02_intertel_verificar.sql` consulta el catálogo de PostgreSQL para comprobar la estructura.
@@ -302,54 +431,80 @@ La base `intertel_bi` contiene once tablas: tres de staging, seis dimensionales 
 
 Las seis tablas del esquema `dw` tienen una PK cada una y seis FK en total. Auditoría incorpora adicionalmente una relación entre `incidencia_etl` y `ejecucion_etl`.
 
-<details><summary>Ver evidencias de implementación física</summary>
+<a name="figura-4"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/base_de_datos_intertel.png" alt="Base de datos intertel_bi">
+</p>
+<p align="center"><strong>Figura 4. Base de datos intertel_bi</strong></p>
+<p align="center"><em>Base de datos intertel_bi en pgAdmin y su estructura local.</em></p>
 
-![Base de datos intertel_bi](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/base_de_datos_intertel.png)
+<a name="figura-5"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/esquemas_base_de_datos.png" alt="Esquemas staging, dw y audit">
+</p>
+<p align="center"><strong>Figura 5. Esquemas staging, dw y audit</strong></p>
+<p align="center"><em>Identificación de los esquemas staging, dw y audit.</em></p>
 
-*Base de datos intertel_bi.*
+<a name="figura-6"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_staging.png" alt="Tablas de staging">
+</p>
+<p align="center"><strong>Figura 6. Tablas de staging</strong></p>
+<p align="center"><em>Tablas receptoras de los tres archivos de origen.</em></p>
 
-![Esquemas staging, dw y audit](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/esquemas_base_de_datos.png)
+<a name="figura-7"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_dimensionales.png" alt="Dimensiones">
+</p>
+<p align="center"><strong>Figura 7. Dimensiones</strong></p>
+<p align="center"><em>Dimensiones de fecha, cliente, dispositivo y grupo.</em></p>
 
-*Esquemas staging, dw y audit.*
+<a name="figura-8"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_hechos.png" alt="Tablas de hechos">
+</p>
+<p align="center"><strong>Figura 8. Tablas de hechos</strong></p>
+<p align="center"><em>Tablas de hechos de facturación y estado GPS.</em></p>
 
-![Tablas de staging](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_staging.png)
+<a name="figura-9"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_auditoria.png" alt="Tablas de auditoría">
+</p>
+<p align="center"><strong>Figura 9. Tablas de auditoría</strong></p>
+<p align="center"><em>Tablas destinadas al control de ejecuciones e incidencias.</em></p>
 
-*Tablas de staging.*
+<a name="figura-10"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/claves_primarias_foraneas.png" alt="Restricciones de claves primarias y foráneas">
+</p>
+<p align="center"><strong>Figura 10. Restricciones de claves primarias y foráneas</strong></p>
+<p align="center"><em>Restricciones de claves primarias y foráneas del modelo dimensional.</em></p>
 
-![Dimensiones](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_dimensionales.png)
-
-*Dimensiones.*
-
-![Tablas de hechos](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_hechos.png)
-
-*Tablas de hechos.*
-
-![Tablas de auditoría](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/tablas_auditoria.png)
-
-*Tablas de auditoría.*
-
-![Restricciones de claves primarias y foráneas](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/02_modelo_dimensional/claves_primarias_foraneas.png)
-
-*Restricciones de claves primarias y foráneas.*
-
-</details>
-
+<a name="seccion-15"></a>
 ## 6. Transformaciones y flujo ETL
 
+<a name="seccion-16"></a>
 ### 6.1. Configuración y extracción
 
 Pentaho Data Integration (Spoon) se conecta a PostgreSQL por JDBC. Las rutas de archivos se parametrizan con `DIR_ORIGEN` para facilitar el traslado del proyecto entre equipos. Cada transformación de extracción utiliza Microsoft Excel Input, selecciona los campos necesarios y carga una tabla de staging, preservando `fila_origen` para la trazabilidad. Los campos de origen se mantienen como texto en staging antes de su conversión y validación.
 
 La preparación local requiere PostgreSQL, Pentaho y los archivos autorizados. El modelo debe instalarse en una base vacía; para una base existente no se debe volver a inicializar ni eliminar información sin respaldo. La fecha del reporte se configura en `staging.v_config_reporte` y corresponde a la extracción, no a la ejecución del Job.
 
-![Conexión JDBC de Pentaho a PostgreSQL (sin credenciales)](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/conexion_postgresql_pentaho.png)
+<a name="figura-11"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/conexion_postgresql_pentaho.png" alt="Conexión JDBC de Pentaho a PostgreSQL (sin credenciales)">
+</p>
+<p align="center"><strong>Figura 11. Conexión JDBC de Pentaho a PostgreSQL (sin credenciales)</strong></p>
+<p align="center"><em>Configuración de acceso de Pentaho al motor PostgreSQL.</em></p>
 
-*Conexión JDBC de Pentaho a PostgreSQL (sin credenciales).*
+<a name="figura-12"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/variables_rutas_etl.png" alt="Parametrización de rutas de archivos">
+</p>
+<p align="center"><strong>Figura 12. Parametrización de rutas de archivos</strong></p>
+<p align="center"><em>Uso de variables para parametrizar la ubicación de los archivos de entrada.</em></p>
 
-![Parametrización de rutas de archivos](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/variables_rutas_etl.png)
-
-*Parametrización de rutas de archivos.*
-
+<a name="seccion-17"></a>
 ### 6.2. Transformaciones aplicadas
 
 El script `03_intertel_transformaciones.sql` implementa funciones y vistas reutilizables, que Pentaho consulta con nodos Table Input para cargar las dimensiones y hechos. La separación permite inspeccionar las reglas en SQL y controlar la secuencia desde Spoon.
@@ -385,6 +540,7 @@ La antigüedad se calcula en días calendario mediante `fecha_reporte - fecha_le
 
 En la facturación se descartan registros con número, nombre, importe o fecha inválidos y se distinguen duplicados y conflictos. Las facturas válidas sin correspondencia en el catálogo se conservan; su rechazo produciría una pérdida de facturación legítima.
 
+<a name="seccion-18"></a>
 ### 6.3. Transformaciones de Pentaho
 
 | Transformación | Flujo | Destino | Filas procesadas |
@@ -399,90 +555,105 @@ En la facturación se descartan registros con número, nombre, importe o fecha i
 | `08_fact_facturacion.ktr` | Transformar Facturación → Cargar Fact Facturación | `dw.fact_facturacion` | 1646 |
 | `09_fact_estado_gps.ktr` | Transformar Estado GPS → Cargar Fact Estado GPS | `dw.fact_estado_gps` | 666 |
 
+<a name="seccion-19"></a>
 #### 01_staging_clientes
 
 La transformación prepara y carga `staging.clientes`. En la ejecución documentada procesó 93 filas. Su flujo es: Leer Clientes → Seleccionar Campos → Cargar Staging Clientes.
 
-![Transformación 01_staging_clientes en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_staging_clientes.png)
+<a name="figura-13"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_staging_clientes.png" alt="Transformación 01_staging_clientes en Pentaho">
+</p>
+<p align="center"><strong>Figura 13. Transformación 01_staging_clientes en Pentaho</strong></p>
+<p align="center"><em>Extracción de clientes, selección de campos y carga a staging.</em></p>
 
-*Transformación 01_staging_clientes en Pentaho.*
-
+<a name="seccion-20"></a>
 #### 02_staging_facturacion
 
 La transformación prepara y carga `staging.facturacion`. En la ejecución documentada procesó 1651 filas. Su flujo es: Leer Facturación → Seleccionar Campos → Cargar Staging Facturación.
 
-![Transformación 02_staging_facturacion en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_staging_facturacion.png)
+<a name="figura-14"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_staging_facturacion.png" alt="Transformación 02_staging_facturacion en Pentaho">
+</p>
+<p align="center"><strong>Figura 14. Transformación 02_staging_facturacion en Pentaho</strong></p>
+<p align="center"><em>Extracción de facturación, selección de campos y carga a staging.</em></p>
 
-*Transformación 02_staging_facturacion en Pentaho.*
-
+<a name="seccion-21"></a>
 #### 03_staging_gps
 
 La transformación prepara y carga `staging.dispositivos`. En la ejecución documentada procesó 666 filas. Su flujo es: Leer Dispositivos GPS → Seleccionar Campos → Cargar Staging GPS.
 
-![Transformación 03_staging_gps en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_staging_gps.png)
+<a name="figura-15"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_staging_gps.png" alt="Transformación 03_staging_gps en Pentaho">
+</p>
+<p align="center"><strong>Figura 15. Transformación 03_staging_gps en Pentaho</strong></p>
+<p align="center"><em>Lectura del reporte de dispositivos GPS y carga al esquema staging.</em></p>
 
-*Transformación 03_staging_gps en Pentaho.*
-
+<a name="seccion-22"></a>
 #### 04_dim_fecha
 
 La transformación prepara y carga `dw.dim_fecha`. En la ejecución documentada procesó 1826 filas. Su flujo es: Generar Fechas → Cargar Dim Fecha.
 
-![Transformación 04_dim_fecha en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_fecha.png)
+<a name="figura-16"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_fecha.png" alt="Transformación 04_dim_fecha en Pentaho">
+</p>
+<p align="center"><strong>Figura 16. Transformación 04_dim_fecha en Pentaho</strong></p>
+<p align="center"><em>Generación del calendario y carga de la dimensión fecha.</em></p>
 
-*Transformación 04_dim_fecha en Pentaho.*
-
+<a name="seccion-23"></a>
 #### 05_dim_cliente
 
 La transformación prepara y carga `dw.dim_cliente`. En la ejecución documentada procesó 232 filas. Su flujo es: Integrar Clientes → Cargar Dim Cliente.
 
-![Transformación 05_dim_cliente en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_cliente.png)
+<a name="figura-17"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_cliente.png" alt="Transformación 05_dim_cliente en Pentaho">
+</p>
+<p align="center"><strong>Figura 17. Transformación 05_dim_cliente en Pentaho</strong></p>
+<p align="center"><em>Integración de nombres del catálogo y de facturación en la dimensión cliente.</em></p>
 
-*Transformación 05_dim_cliente en Pentaho.*
-
+<a name="seccion-24"></a>
 #### 06_dim_dispositivo
 
 La transformación prepara y carga `dw.dim_dispositivo`. En la ejecución documentada procesó 666 filas. Su flujo es: Limpiar Dispositivos → Cargar Dim Dispositivo.
 
-![Transformación 06_dim_dispositivo en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_dispositivo.png)
+<a name="figura-18"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_dispositivo.png" alt="Transformación 06_dim_dispositivo en Pentaho">
+</p>
+<p align="center"><strong>Figura 18. Transformación 06_dim_dispositivo en Pentaho</strong></p>
+<p align="center"><em>Normalización de las claves de dispositivo y carga de la dimensión.</em></p>
 
-*Transformación 06_dim_dispositivo en Pentaho.*
-
+<a name="seccion-25"></a>
 #### 07_dim_grupo
 
 La transformación prepara y carga `dw.dim_grupo`. En la ejecución documentada procesó 40 filas. Su flujo es: Obtener Grupos → Cargar Dim Grupo.
 
-> **Captura pendiente:** Transformación 07_dim_grupo en Pentaho.
->
-> Archivo: `Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_grupo.png`
+[Ver transformación 07_dim_grupo.ktr](pentaho/transformaciones/07_dim_grupo.ktr).
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Transformación 07_dim_grupo en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_dim_grupo.png)
--->
-
-*Transformación 07_dim_grupo en Pentaho.*
-
+<a name="seccion-26"></a>
 #### 08_fact_facturacion
 
 La transformación prepara y carga `dw.fact_facturacion`. En la ejecución documentada procesó 1646 filas. Su flujo es: Transformar Facturación → Cargar Fact Facturación.
 
-> **Captura pendiente:** Transformación 08_fact_facturacion en Pentaho.
->
-> Archivo: `Intertel_BI/docs/capturas/03_etl_pentaho/etl_fact_facturacion.png`
+[Ver transformación 08_fact_facturacion.ktr](pentaho/transformaciones/08_fact_facturacion.ktr).
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Transformación 08_fact_facturacion en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_fact_facturacion.png)
--->
-
-*Transformación 08_fact_facturacion en Pentaho.*
-
+<a name="seccion-27"></a>
 #### 09_fact_estado_gps
 
 La transformación prepara y carga `dw.fact_estado_gps`. En la ejecución documentada procesó 666 filas. Su flujo es: Transformar Estado GPS → Cargar Fact Estado GPS.
 
-![Transformación 09_fact_estado_gps en Pentaho](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_fact_estado_gps.png)
+<a name="figura-19"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/etl_fact_estado_gps.png" alt="Transformación 09_fact_estado_gps en Pentaho">
+</p>
+<p align="center"><strong>Figura 19. Transformación 09_fact_estado_gps en Pentaho</strong></p>
+<p align="center"><em>Transformación y carga de la instantánea operativa GPS.</em></p>
 
-*Transformación 09_fact_estado_gps en Pentaho.*
-
+<a name="seccion-28"></a>
 ### 6.4. Job principal `Intertel_ETL`
 
 El Job encadena las nueve transformaciones en orden de dependencia. Inicia un registro de auditoría, carga staging, carga dimensiones antes que hechos, valida el Data Warehouse y registra el resultado. Las rutas de error deben impedir que una carga fallida sea declarada exitosa.
@@ -505,36 +676,23 @@ flowchart TD
     L -.->|Error| O[Registrar error / finalizar sin éxito]
 ```
 
-*Representación de la ruta principal y control de fallo; el Job real contiene la configuración de conexiones de ejecución.*
+<a name="figura-20"></a>
+<p align="center"><strong>Figura 20. Flujo del Job Intertel_ETL</strong></p>
+<p align="center"><em>Representación de la secuencia principal y del control de fallos.</em></p>
 
 El log registrado el 25/11/2026 evidencia la secuencia completa con `result=[true]` en las entradas ejecutadas y finalización de Job. En el historial de auditoría se observaron dos ejecuciones exitosas, de aproximadamente 3,17 y 2,38 segundos según las marcas registradas en la base. Estas duraciones son observaciones del entorno local y no un benchmark de rendimiento. Reejecutar el flujo con los mismos archivos permite comprobar la repetibilidad; no demuestra que exista un planificador automático o actualización en tiempo real.
 
-![Job principal con transformaciones y rutas de control](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/job_intertel_etl_completo.png)
+<a name="figura-21"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/job_intertel_etl_completo.png" alt="Job principal con transformaciones y rutas de control">
+</p>
+<p align="center"><strong>Figura 21. Job principal con transformaciones y rutas de control</strong></p>
+<p align="center"><em>Orquestación de las nueve transformaciones, validación y control de ejecución.</em></p>
 
-*Job principal con transformaciones y rutas de control.*
-
-> **Captura pendiente:** Ejecución exitosa del Job.
->
-> Archivo: `Intertel_BI/docs/capturas/03_etl_pentaho/job_ejecucion_exitosa.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Ejecución exitosa del Job](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/job_ejecucion_exitosa.png)
--->
-
-*Ejecución exitosa del Job.*
-
-> **Captura pendiente:** Log de ejecución final.
->
-> Archivo: `Intertel_BI/docs/capturas/03_etl_pentaho/job_log_ejecucion.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Log de ejecución final](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/03_etl_pentaho/job_log_ejecucion.png)
--->
-
-*Log de ejecución final.*
-
+<a name="seccion-29"></a>
 ## 7. Validación y calidad de datos
 
+<a name="seccion-30"></a>
 ### 7.1. Conteos y reconciliación
 
 El script `04_intertel_validar_carga.sql` compara las vistas limpias con el destino, concilia importes, resume incidencias y verifica consistencia de antigüedad. Según las ejecuciones y validaciones realizadas durante el proyecto:
@@ -561,35 +719,28 @@ SELECT
     (SELECT SUM(valor_facturado) FROM dw.fact_facturacion) AS diferencia;
 ```
 
-Resultado de referencia: ambos totales USD 236.752,00; diferencia esperada y reportada en las validaciones: USD 0,00. La evidencia debe mostrar los valores exactos de la ejecución local.
+Resultado de referencia: ambos totales USD 236.752,00; diferencia esperada y reportada en las validaciones: USD 0,00. El bloque de conciliación se conserva en el [script de validación](postgresql/04_intertel_validar_carga.sql). La evidencia gráfica de integración compara los conteos esperados y cargados, no los importes.
 
-> **Captura pendiente:** Conciliación del importe facturado entre origen limpio y DW.
->
-> Archivo: `Intertel_BI/docs/capturas/04_validaciones/validacion_conciliacion_financiera.png`
+<a name="figura-22"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/integracion_validacion_postgresql_etl.png" alt="Validación integral de la carga dimensional">
+</p>
+<p align="center"><strong>Figura 22. Validación integral de la carga dimensional</strong></p>
+<p align="center"><em>Comparación de los conteos esperados y cargados de las seis tablas del Data Warehouse.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Conciliación del importe facturado entre origen limpio y DW](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_conciliacion_financiera.png)
--->
-
-*Conciliación del importe facturado entre origen limpio y DW.*
-
+<a name="seccion-31"></a>
 ### 7.2. Integridad y consistencia
-
-```sql
-SELECT COUNT(*) AS gps_inconsistentes
-FROM dw.fact_estado_gps f
-JOIN dw.dim_fecha d ON d.fecha_sk = f.fecha_reporte_sk
-LEFT JOIN dw.dim_fecha u ON u.fecha_sk = f.fecha_registro_sk
-WHERE f.estado_datos = 'CON_DATOS'
-  AND (u.fecha IS NULL OR f.dias_sin_registro IS DISTINCT FROM d.fecha-u.fecha);
-```
 
 La consulta devolvió cero inconsistencias. Esto comprueba la regla de antigüedad para los registros con datos; la integridad referencial se asegura además por las FK definidas en el DDL, no únicamente por esta consulta.
 
-![Validación de consistencia de fechas y antigüedad GPS](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_integridad_referencial.png)
+<a name="figura-23"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_integridad_referencial.png" alt="Validación de consistencia de fechas y antigüedad GPS">
+</p>
+<p align="center"><strong>Figura 23. Validación de consistencia de fechas y antigüedad GPS</strong></p>
+<p align="center"><em>Comprobación de consistencia de fechas y antigüedad en registros GPS.</em></p>
 
-*Validación de consistencia de fechas y antigüedad GPS.*
-
+<a name="seccion-32"></a>
 ### 7.3. Resultados de calidad y auditoría
 
 | Fuente | Regla | Severidad | Cantidad |
@@ -605,44 +756,63 @@ Las advertencias no impiden conservar registros válidos. Una fila puede activar
 
 La dimensión cliente contiene 90 nombres con coincidencia única, 141 sin coincidencia y uno con coincidencia múltiple. Los 232 miembros incluyen nombres provenientes de las dos fuentes; no equivalen a 232 clientes facturados o identidades legales verificadas. En el reporte GPS se registraron 621 dispositivos con dato de SIM y 45 sin ese dato; se identificaron 39 grupos y un miembro técnico `SIN GRUPO`.
 
-![Incidencias detectadas en la última carga exitosa](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/auditoria_incidencias_etl.png)
+<a name="figura-24"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/auditoria_incidencias_etl.png" alt="Incidencias detectadas en la última carga exitosa">
+</p>
+<p align="center"><strong>Figura 24. Incidencias detectadas en la última carga exitosa</strong></p>
+<p align="center"><em>Resumen de advertencias y rechazos por fuente y regla de calidad.</em></p>
 
-*Incidencias detectadas en la última carga exitosa.*
+<a name="figura-25"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/auditoria_ejecuciones_etl.png" alt="Historial de ejecuciones del ETL">
+</p>
+<p align="center"><strong>Figura 25. Historial de ejecuciones del ETL</strong></p>
+<p align="center"><em>Historial de ejecuciones y estado registrado por el proceso ETL.</em></p>
 
-![Historial de ejecuciones del ETL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/auditoria_ejecuciones_etl.png)
+<a name="figura-26"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_staging.png" alt="Conteos de staging">
+</p>
+<p align="center"><strong>Figura 26. Conteos de staging</strong></p>
+<p align="center"><em>Conteos de las tres tablas de entrada en staging.</em></p>
 
-*Historial de ejecuciones del ETL.*
+<a name="figura-27"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_dimensiones.png" alt="Conteos de dimensiones">
+</p>
+<p align="center"><strong>Figura 27. Conteos de dimensiones</strong></p>
+<p align="center"><em>Conteos de los miembros de las cuatro dimensiones.</em></p>
 
-<details><summary>Ver conteos y evidencias adicionales de calidad</summary>
+<a name="figura-28"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_tablas_hechos.png" alt="Conteos de tablas de hechos">
+</p>
+<p align="center"><strong>Figura 28. Conteos de tablas de hechos</strong></p>
+<p align="center"><em>Conteos de registros de las dos tablas de hechos.</em></p>
 
-![Conteos de staging](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_staging.png)
+<a name="figura-29"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/calidad_catalogo_clientes.png" alt="Coincidencias por nombre en el catálogo">
+</p>
+<p align="center"><strong>Figura 29. Coincidencias por nombre en el catálogo</strong></p>
+<p align="center"><em>Distribución de coincidencias únicas, múltiples y ausentes por nombre.</em></p>
 
-*Conteos de staging.*
+<a name="figura-30"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/calidad_dispositivos_gps.png" alt="Disponibilidad de información SIM">
+</p>
+<p align="center"><strong>Figura 30. Disponibilidad de información SIM</strong></p>
+<p align="center"><em>Conteo de dispositivos con y sin información SIM.</em></p>
 
-![Conteos de dimensiones](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_dimensiones.png)
-
-*Conteos de dimensiones.*
-
-![Conteos de tablas de hechos](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/validacion_tablas_hechos.png)
-
-*Conteos de tablas de hechos.*
-
-![Coincidencias por nombre en el catálogo](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/calidad_catalogo_clientes.png)
-
-*Coincidencias por nombre en el catálogo.*
-
-![Disponibilidad de información SIM](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/04_validaciones/calidad_dispositivos_gps.png)
-
-*Disponibilidad de información SIM.*
-
-</details>
-
+<a name="seccion-33"></a>
 ## 8. Consultas SQL y resultados
 
-Las 18 consultas se ejecutan sobre `dw` y `audit`, sin modificar los datos. Se utilizan agregaciones, JOIN, filtros, funciones de ventana y expresiones comunes de tabla (CTE). Para garantizar reproducibilidad, se incluye el código de cada bloque original en secciones desplegables.
+Las 18 consultas se ejecutan sobre `dw` y `audit`, sin modificar los datos. Se utilizan agregaciones, JOIN, filtros, funciones de ventana y expresiones comunes de tabla (CTE). Para evitar duplicidad, se presentan las capturas de las consultas ejecutadas y su interpretación. El código completo se conserva en [05_intertel_consultas_negocio.sql](postgresql/05_intertel_consultas_negocio.sql).
 
-Los importes comerciales se contrastaron también con la hoja principal de facturación: 1.646 números válidos y únicos, total acumulado USD 236.752,00 y 205 nombres normalizados distintos con facturación. Los valores operativos se basan en las ejecuciones y capturas documentadas del proyecto; las evidencias pendientes deben contrastarse con el entorno local.
+Los importes comerciales se contrastaron también con la hoja principal de facturación: 1.646 números válidos y únicos, total acumulado USD 236.752,00 y 205 nombres normalizados distintos con facturación. Los valores operativos se basan en las ejecuciones y capturas documentadas del proyecto. La tarjeta de clientes facturados de la versión final de Power BI muestra 206, mientras que el contraste previo del Excel indicó 205 nombres normalizados; son resultados de procedimientos de conteo diferentes que requieren reconciliación antes de utilizarlos como un único indicador.
 
+<a name="seccion-34"></a>
 ### 8.1. Resumen de resultados comerciales
 
 | Indicador | Resultado |
@@ -675,6 +845,7 @@ Los importes comerciales se contrastaron también con la hoja principal de factu
 | Diciembre | 8.770,21 | Sin registros en el corte |
 | **Total registrado** | **113.309,25** | **123.442,75** |
 
+<a name="seccion-35"></a>
 ### 8.2. Resumen de resultados operativos
 
 | Indicador | Resultado |
@@ -687,515 +858,293 @@ Los importes comerciales se contrastaron también con la hoja principal de factu
 | Registros sin grupo | 131 (19,67 %) |
 | Registros sin dato SIM | 45 (6,76 %) |
 
+<a name="seccion-36"></a>
 ### 8.3. Detalle de consultas y trazabilidad
 
+<a name="seccion-37"></a>
 #### PN01. ¿Cuánto se ha facturado por año, trimestre y mes?
 
 **Interpretación:** PN01 muestra la distribución mensual. Los totales registrados son USD 113.309,25 en 2025 y USD 123.442,75 en 2026 (parcial).
 
 **Visualización asociada:** Evolución temporal y matriz.
 
-<details><summary>Consulta SQL y evidencia PN01</summary>
+<a name="figura-31"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn01_facturacion_por_periodo.png" alt="PN01 — Facturación por período">
+</p>
+<p align="center"><strong>Figura 31. PN01 — Facturación por período</strong></p>
+<p align="center"><em>Agregación de importes y facturas por año, trimestre y mes.</em></p>
 
-```sql
--- PN01. ¿Cuánto se ha facturado por año, trimestre y mes?
-SELECT d.anio, d.trimestre, d.mes, d.nombre_mes,
-       SUM(f.valor_facturado) AS total_facturado,
-       COUNT(*) AS cantidad_facturas
-FROM dw.fact_facturacion f
-JOIN dw.dim_fecha d ON d.fecha_sk = f.fecha_sk
-GROUP BY d.anio, d.trimestre, d.mes, d.nombre_mes
-ORDER BY d.anio, d.mes;
-```
-
-![PN01 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn01_facturacion_por_periodo.png)
-
-*PN01 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-38"></a>
 #### PN02. ¿Cómo evolucionó la facturación entre enero y octubre de 2025 y 2026?
 
 **Interpretación:** USD 94.861,49 frente a USD 112.418,94: diferencia de USD 17.557,45 y crecimiento de 18,51 %. Comparar meses equivalentes evita incorporar noviembre parcial.
 
 **Visualización asociada:** Inicio: crecimiento interanual.
 
-<details><summary>Consulta SQL y evidencia PN02</summary>
+<a name="figura-32"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn02_crecimiento_interanual.png" alt="PN02 — Crecimiento interanual">
+</p>
+<p align="center"><strong>Figura 32. PN02 — Crecimiento interanual</strong></p>
+<p align="center"><em>Comparación de facturación de enero a octubre de ambos años.</em></p>
 
-```sql
--- PN02. ¿Cómo evolucionó la facturación entre enero y octubre de 2025 y 2026?
--- Se excluye noviembre de ambos años porque noviembre de 2026 está incompleto.
--- Comparación de registros disponibles: confirmar cobertura completa con Intertel.
-WITH periodos AS (
-    SELECT
-        SUM(f.valor_facturado) FILTER (WHERE d.anio = 2025) AS total_2025,
-        SUM(f.valor_facturado) FILTER (WHERE d.anio = 2026) AS total_2026
-    FROM dw.fact_facturacion f
-    JOIN dw.dim_fecha d ON d.fecha_sk = f.fecha_sk
-    WHERE d.anio IN (2025, 2026) AND d.mes BETWEEN 1 AND 10
-)
-SELECT total_2025, total_2026,
-       total_2026 - total_2025 AS diferencia,
-       ROUND(100.0 * (total_2026 - total_2025) / NULLIF(total_2025, 0), 2) AS variacion_pct
-FROM periodos;
-```
-
-![PN02 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn02_crecimiento_interanual.png)
-
-*PN02 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-39"></a>
 #### PN03. ¿Cuáles son los diez clientes facturados con mayor importe?
 
 **Interpretación:** Permite identificar las etiquetas de clientes prioritarias para seguimiento comercial. El ranking se presenta por claves técnicas, no por nombres reales.
 
 **Visualización asociada:** Ranking Top 10.
 
-<details><summary>Consulta SQL y evidencia PN03</summary>
+<a name="figura-33"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn03_top10_clientes.png" alt="PN03 — Top 10 de clientes">
+</p>
+<p align="center"><strong>Figura 33. PN03 — Top 10 de clientes</strong></p>
+<p align="center"><em>Ranking de los diez nombres de cliente con mayor importe facturado.</em></p>
 
-```sql
--- PN03. ¿Cuáles son los diez clientes facturados con mayor importe?
-SELECT c.cliente_sk, c.estado_catalogo,
-       COUNT(*) AS cantidad_facturas,
-       SUM(f.valor_facturado) AS total_facturado
-FROM dw.fact_facturacion f
-JOIN dw.dim_cliente c ON c.cliente_sk = f.cliente_sk
-GROUP BY c.cliente_sk, c.estado_catalogo
-ORDER BY total_facturado DESC, c.cliente_sk
-LIMIT 10;
-```
-
-![PN03 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn03_top10_clientes.png)
-
-*PN03 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-40"></a>
 #### PN04. ¿Qué porcentaje de facturación corresponde a los diez principales clientes?
 
 **Interpretación:** Los diez principales nombres normalizados acumulan USD 166.804,02 (70,46 % del importe total), según recálculo de la hoja principal. Confirmar el mismo valor en PN04 y Power BI sin filtros.
 
 **Visualización asociada:** Tarjeta concentración Top 10.
 
-<details><summary>Consulta SQL y evidencia PN04</summary>
+<a name="figura-34"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn04_concentracion_comercial.png" alt="PN04 — Concentración comercial">
+</p>
+<p align="center"><strong>Figura 34. PN04 — Concentración comercial</strong></p>
+<p align="center"><em>Participación de los diez principales clientes respecto a la facturación total.</em></p>
 
-```sql
--- PN04. ¿Qué porcentaje de facturación corresponde a los diez principales clientes?
-WITH por_cliente AS (
-    SELECT cliente_sk, SUM(valor_facturado) AS total_cliente
-    FROM dw.fact_facturacion GROUP BY cliente_sk
-), ranking AS (
-    SELECT *, ROW_NUMBER() OVER (ORDER BY total_cliente DESC, cliente_sk) AS posicion
-    FROM por_cliente
-)
-SELECT SUM(total_cliente) AS total_facturado,
-       SUM(total_cliente) FILTER (WHERE posicion <= 10) AS facturacion_top_10,
-       ROUND(100.0 * SUM(total_cliente) FILTER (WHERE posicion <= 10)
-             / NULLIF(SUM(total_cliente), 0), 2) AS concentracion_top_10_pct
-FROM ranking;
-```
-
-![PN04 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn04_concentracion_comercial.png)
-
-*PN04 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-41"></a>
 #### PN05. ¿Cuál es el importe promedio de una factura?
 
 **Interpretación:** 1.646 facturas; USD 236.752,00 acumulados; USD 143,83 por factura. No es el ingreso promedio por cliente ni el precio promedio de un plan.
 
 **Visualización asociada:** Inicio y Comercial: ticket promedio.
 
-<details><summary>Consulta SQL y evidencia PN05</summary>
+<a name="figura-35"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn05_ticket_promedio.png" alt="PN05 — Ticket promedio">
+</p>
+<p align="center"><strong>Figura 35. PN05 — Ticket promedio</strong></p>
+<p align="center"><em>Cálculo del importe promedio por factura válida.</em></p>
 
-```sql
--- PN05. ¿Cuál es el importe promedio de una factura?
-SELECT COUNT(*) AS cantidad_facturas,
-       SUM(valor_facturado) AS total_facturado,
-       ROUND(AVG(valor_facturado), 2) AS ticket_promedio
-FROM dw.fact_facturacion;
-```
-
-![PN05 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn05_ticket_promedio.png)
-
-*PN05 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-42"></a>
 #### PN06. ¿Cuántos nombres de clientes diferentes registran facturación cada mes?
 
 **Interpretación:** El recuento distinto de cliente_sk debe calcularse en cada mes; los recuentos mensuales no se suman para obtener clientes únicos anuales.
 
 **Visualización asociada:** Clientes facturados + filtros.
 
-<details><summary>Consulta SQL y evidencia PN06</summary>
+<a name="figura-36"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn06_clientes_facturados_mes.png" alt="PN06 — Clientes facturados por mes">
+</p>
+<p align="center"><strong>Figura 36. PN06 — Clientes facturados por mes</strong></p>
+<p align="center"><em>Recuento de clientes distintos facturados por período mensual.</em></p>
 
-```sql
--- PN06. ¿Cuántos nombres de clientes diferentes registran facturación cada mes?
-SELECT d.anio, d.mes, d.nombre_mes,
-       COUNT(DISTINCT f.cliente_sk) AS clientes_facturados,
-       COUNT(*) AS cantidad_facturas
-FROM dw.fact_facturacion f
-JOIN dw.dim_fecha d ON d.fecha_sk = f.fecha_sk
-GROUP BY d.anio, d.mes, d.nombre_mes
-ORDER BY d.anio, d.mes;
-```
-
-![PN06 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn06_clientes_facturados_mes.png)
-
-*PN06 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-43"></a>
 #### PN07. ¿Qué meses tienen mayor y menor facturación?
 
 **Interpretación:** Octubre de 2026: USD 18.758,90 (máximo); agosto de 2026: USD 4.746,17 (mínimo), entre meses con registros y excluyendo noviembre de 2026.
 
 **Visualización asociada:** Gráfico mensual y matriz.
 
-<details><summary>Consulta SQL y evidencia PN07</summary>
+<a name="figura-37"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn07_mayor_menor_facturacion.png" alt="PN07 — Mayor y menor facturación">
+</p>
+<p align="center"><strong>Figura 37. PN07 — Mayor y menor facturación</strong></p>
+<p align="center"><em>Identificación de los períodos de mayor y menor facturación.</em></p>
 
-```sql
--- PN07. ¿Qué meses tienen mayor y menor facturación?
--- Se excluye noviembre de 2026 (parcial) y los meses sin registros.
-WITH mensual AS (
-    SELECT d.anio, d.mes, d.nombre_mes, SUM(f.valor_facturado) AS total_facturado
-    FROM dw.fact_facturacion f
-    JOIN dw.dim_fecha d ON d.fecha_sk = f.fecha_sk
-    WHERE d.fecha >= DATE '2025-01-01' AND d.fecha < DATE '2026-11-01'
-    GROUP BY d.anio, d.mes, d.nombre_mes
-), ranking AS (
-    SELECT *, DENSE_RANK() OVER (ORDER BY total_facturado DESC) AS mayor,
-              DENSE_RANK() OVER (ORDER BY total_facturado ASC) AS menor
-    FROM mensual
-)
-SELECT CASE WHEN mayor = 1 THEN 'MAYOR' ELSE 'MENOR' END AS clasificacion,
-       anio, mes, nombre_mes, total_facturado
-FROM ranking WHERE mayor = 1 OR menor = 1
-ORDER BY mayor, anio, mes;
-```
-
-![PN07 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn07_mayor_menor_facturacion.png)
-
-*PN07 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-44"></a>
 #### PN08. ¿Con qué frecuencia se emiten facturas por nombre de cliente?
 
 **Interpretación:** Permite identificar recurrencia documental mediante facturas, meses con actividad y promedio por mes activo; no demuestra suscripciones activas.
 
 **Visualización asociada:** Consulta SQL y tooltip de ranking.
 
-<details><summary>Consulta SQL y evidencia PN08</summary>
+<a name="figura-38"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn08_frecuencia_facturacion.png" alt="PN08 — Frecuencia de facturación">
+</p>
+<p align="center"><strong>Figura 38. PN08 — Frecuencia de facturación</strong></p>
+<p align="center"><em>Frecuencia de emisión de facturas por nombre de cliente.</em></p>
 
-```sql
--- PN08. ¿Con qué frecuencia se emiten facturas por nombre de cliente?
-SELECT f.cliente_sk, COUNT(*) AS facturas,
-       COUNT(DISTINCT (d.anio, d.mes)) AS meses_con_facturas,
-       MIN(d.fecha) AS primera_factura, MAX(d.fecha) AS ultima_factura,
-       ROUND(COUNT(*)::numeric / NULLIF(COUNT(DISTINCT (d.anio, d.mes)), 0), 2)
-           AS facturas_por_mes_con_actividad
-FROM dw.fact_facturacion f
-JOIN dw.dim_fecha d ON d.fecha_sk = f.fecha_sk
-GROUP BY f.cliente_sk
-ORDER BY facturas DESC, f.cliente_sk;
-```
-
-![PN08 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn08_frecuencia_facturacion.png)
-
-*PN08 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-45"></a>
 #### PN09. ¿Cuántos registros y claves de dispositivo aparecen en el reporte?
 
 **Interpretación:** 666 registros, 666 claves provisionales en la dimensión de dispositivos y 39 grupos identificados (excluye SIN GRUPO). No equivale a una verificación de 666 vehículos activos.
 
 **Visualización asociada:** Tarjetas GPS y grupos.
 
-<details><summary>Consulta SQL y evidencia PN09</summary>
+<a name="figura-39"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn09_total_registros_gps.png" alt="PN09 — Total de registros GPS">
+</p>
+<p align="center"><strong>Figura 39. PN09 — Total de registros GPS</strong></p>
+<p align="center"><em>Conteo de registros, identidades de dispositivo y grupos del reporte.</em></p>
 
-```sql
--- PN09. ¿Cuántos registros y claves de dispositivo aparecen en el reporte?
-SELECT COUNT(*) AS registros_gps,
-       COUNT(DISTINCT dispositivo_sk) AS dispositivos_identificados_provisionalmente,
-       COUNT(DISTINCT f.grupo_sk) FILTER (WHERE NOT g.es_sin_grupo) AS grupos_identificados
-FROM dw.fact_estado_gps f
-JOIN dw.dim_grupo g USING (grupo_sk)
-WHERE f.fecha_reporte_sk = 20261119;
-```
-
-![PN09 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn09_total_registros_gps.png)
-
-*PN09 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-46"></a>
 #### PN10. ¿Qué grupos concentran más registros de dispositivos?
 
 **Interpretación:** El ranking permite identificar los grupos con mayor volumen, separando SIN GRUPO de los grupos identificados. No todos los grupos son necesariamente cooperativas.
 
 **Visualización asociada:** Barras por grupo.
 
-<details><summary>Consulta SQL y evidencia PN10</summary>
+<a name="figura-40"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn10_dispositivos_por_grupo.png" alt="PN10 — Dispositivos por grupo">
+</p>
+<p align="center"><strong>Figura 40. PN10 — Dispositivos por grupo</strong></p>
+<p align="center"><em>Distribución de los registros GPS por grupo.</em></p>
 
-```sql
--- PN10. ¿Qué grupos concentran más registros de dispositivos?
-SELECT g.grupo_sk, g.nombre_grupo, g.es_sin_grupo,
-       COUNT(*) AS registros_gps,
-       COUNT(DISTINCT f.dispositivo_sk) AS claves_dispositivo,
-       ROUND(100.0 * COUNT(*) / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS participacion_pct
-FROM dw.fact_estado_gps f JOIN dw.dim_grupo g USING (grupo_sk)
-WHERE f.fecha_reporte_sk = 20261119
-GROUP BY g.grupo_sk, g.nombre_grupo, g.es_sin_grupo
-ORDER BY registros_gps DESC, g.grupo_sk;
-```
-
-![PN10 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn10_dispositivos_por_grupo.png)
-
-*PN10 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-47"></a>
 #### PN11. ¿Qué proporción de registros tiene información GPS disponible?
 
 **Interpretación:** 186 con información (27,93 %) y 480 sin información (72,07 %).
 
 **Visualización asociada:** Anillo de disponibilidad.
 
-<details><summary>Consulta SQL y evidencia PN11</summary>
+<a name="figura-41"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn11_disponibilidad_gps.png" alt="PN11 — Disponibilidad GPS">
+</p>
+<p align="center"><strong>Figura 41. PN11 — Disponibilidad GPS</strong></p>
+<p align="center"><em>Cantidad y proporción de registros con y sin información.</em></p>
 
-```sql
--- PN11. ¿Qué proporción de registros tiene información GPS disponible?
-SELECT estado_datos, COUNT(*) AS registros,
-       ROUND(100.0 * COUNT(*) / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS porcentaje
-FROM dw.fact_estado_gps WHERE fecha_reporte_sk = 20261119
-GROUP BY estado_datos ORDER BY registros DESC;
-```
-
-![PN11 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn11_disponibilidad_gps.png)
-
-*PN11 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-48"></a>
 #### PN12. ¿Qué grupos presentan más registros sin datos y qué proporción representan?
 
 **Interpretación:** Compara cantidad absoluta y porcentaje dentro de cada grupo; un grupo pequeño con 100 % no siempre tiene el mayor impacto absoluto.
 
 **Visualización asociada:** Matriz y barras apiladas.
 
-<details><summary>Consulta SQL y evidencia PN12</summary>
+<a name="figura-42"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn12_grupos_sin_datos.png" alt="PN12 — Grupos sin datos">
+</p>
+<p align="center"><strong>Figura 42. PN12 — Grupos sin datos</strong></p>
+<p align="center"><em>Comparación de cantidades y proporciones de ausencia de datos por grupo.</em></p>
 
-```sql
--- PN12. ¿Qué grupos presentan más registros sin datos y qué proporción representan?
-SELECT g.grupo_sk, g.nombre_grupo, COUNT(*) AS total_registros,
-       COUNT(*) FILTER (WHERE f.estado_datos = 'SIN_DATOS') AS sin_datos,
-       ROUND(100.0 * COUNT(*) FILTER (WHERE f.estado_datos = 'SIN_DATOS')
-             / NULLIF(COUNT(*), 0), 2) AS sin_datos_pct
-FROM dw.fact_estado_gps f JOIN dw.dim_grupo g USING (grupo_sk)
-WHERE f.fecha_reporte_sk = 20261119
-GROUP BY g.grupo_sk, g.nombre_grupo
-ORDER BY sin_datos DESC, sin_datos_pct DESC, g.grupo_sk;
-```
-
-![PN12 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn12_grupos_sin_datos.png)
-
-*PN12 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-49"></a>
 #### PN13. ¿Cuál es la antigüedad de la información GPS disponible?
 
 **Interpretación:** 105 registros presentan más de 30 días de antigüedad; equivalen al 56,45 % de los 186 registros con datos.
 
 **Visualización asociada:** Gráfico de antigüedad.
 
-<details><summary>Consulta SQL y evidencia PN13</summary>
+<a name="figura-43"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn13_antiguedad_gps.png" alt="PN13 — Antigüedad de registros GPS">
+</p>
+<p align="center"><strong>Figura 43. PN13 — Antigüedad de registros GPS</strong></p>
+<p align="center"><em>Distribución de registros según la antigüedad de la última información.</em></p>
 
-```sql
--- PN13. ¿Cuál es la antigüedad de la información GPS disponible?
-WITH rangos AS (
-    SELECT CASE WHEN estado_datos = 'SIN_DATOS' THEN 5
-                WHEN estado_datos = 'FECHA_INVALIDA' THEN 6
-                WHEN dias_sin_registro = 0 THEN 1
-                WHEN dias_sin_registro BETWEEN 1 AND 7 THEN 2
-                WHEN dias_sin_registro BETWEEN 8 AND 30 THEN 3
-                ELSE 4 END AS orden
-    FROM dw.fact_estado_gps WHERE fecha_reporte_sk = 20261119
-)
-SELECT orden, CASE orden WHEN 1 THEN 'Mismo día' WHEN 2 THEN '1-7 días'
-       WHEN 3 THEN '8-30 días' WHEN 4 THEN 'Más de 30 días'
-       WHEN 5 THEN 'Sin datos' ELSE 'Fecha inválida' END AS rango,
-       COUNT(*) AS registros,
-       ROUND(100.0 * COUNT(*) / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS porcentaje
-FROM rangos GROUP BY orden ORDER BY orden;
-```
-
-![PN13 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn13_antiguedad_gps.png)
-
-*PN13 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-50"></a>
 #### PN14. ¿Qué grupos requieren revisión por registros con más de 30 días de antigüedad?
 
 **Interpretación:** Identifica grupos por cantidad y proporción de registros antiguos entre aquellos con información válida. No es un diagnóstico de desconexión.
 
 **Visualización asociada:** Matriz y segmentadores.
 
-<details><summary>Consulta SQL y evidencia PN14</summary>
+<a name="figura-44"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn14_grupos_registros_antiguos.png" alt="PN14 — Grupos con registros antiguos">
+</p>
+<p align="center"><strong>Figura 44. PN14 — Grupos con registros antiguos</strong></p>
+<p align="center"><em>Identificación de grupos con registros de más de treinta días.</em></p>
 
-```sql
--- PN14. ¿Qué grupos requieren revisión por registros con más de 30 días de antigüedad?
-SELECT g.grupo_sk, g.nombre_grupo, COUNT(*) AS registros,
-       COUNT(*) FILTER (WHERE f.estado_datos = 'CON_DATOS') AS con_datos,
-       COUNT(*) FILTER (WHERE f.dias_sin_registro > 30) AS mas_30_dias,
-       ROUND(100.0 * COUNT(*) FILTER (WHERE f.dias_sin_registro > 30)
-          / NULLIF(COUNT(*) FILTER (WHERE f.estado_datos = 'CON_DATOS'), 0), 2) AS pct_sobre_con_datos
-FROM dw.fact_estado_gps f JOIN dw.dim_grupo g USING (grupo_sk)
-WHERE f.fecha_reporte_sk = 20261119
-GROUP BY g.grupo_sk, g.nombre_grupo
-ORDER BY mas_30_dias DESC, g.grupo_sk;
-```
-
-![PN14 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn14_grupos_registros_antiguos.png)
-
-*PN14 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-51"></a>
 #### PN15. ¿Cuántos registros cuentan con coordenadas válidas?
 
 **Interpretación:** Se evalúa la cobertura del indicador tiene_posicion, no la ubicación geográfica de clientes ni un mapa de vehículos. El valor exacto se evidencia en PN15.
 
 **Visualización asociada:** Consulta SQL / GPS Con Posicion.
 
-<details><summary>Consulta SQL y evidencia PN15</summary>
+<a name="figura-45"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn15_posiciones_validas.png" alt="PN15 — Posiciones GPS válidas">
+</p>
+<p align="center"><strong>Figura 45. PN15 — Posiciones GPS válidas</strong></p>
+<p align="center"><em>Recuento de registros con y sin posición GPS válida.</em></p>
 
-```sql
--- PN15 (reformulada). ¿Cuántos registros cuentan con coordenadas válidas?
--- El DW solo guarda tiene_posicion, no latitud/longitud ni ciudad.
-SELECT COUNT(*) AS registros,
-       COUNT(*) FILTER (WHERE tiene_posicion) AS con_posicion,
-       COUNT(*) FILTER (WHERE NOT tiene_posicion) AS sin_posicion,
-       ROUND(100.0 * COUNT(*) FILTER (WHERE tiene_posicion) / NULLIF(COUNT(*), 0), 2) AS cobertura_pct
-FROM dw.fact_estado_gps WHERE fecha_reporte_sk = 20261119;
-```
-
-![PN15 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn15_posiciones_validas.png)
-
-*PN15 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-52"></a>
 #### PN16. ¿Qué proporción de facturas no coincide por nombre con el catálogo?
 
 **Interpretación:** 640 facturas sin coincidencia (38,88 % de las 1.646 válidas). Distinguir facturas de nombres únicos.
 
 **Visualización asociada:** Anillo de calidad comercial.
 
-<details><summary>Consulta SQL y evidencia PN16</summary>
+<a name="figura-46"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn16_facturas_sin_coincidencia.png" alt="PN16 — Facturas sin coincidencia">
+</p>
+<p align="center"><strong>Figura 46. PN16 — Facturas sin coincidencia</strong></p>
+<p align="center"><em>Distribución de facturas e importes según el estado de coincidencia con el catálogo.</em></p>
 
-```sql
--- PN16. ¿Qué proporción de facturas no coincide por nombre con el catálogo?
-SELECT c.estado_catalogo, COUNT(*) AS facturas,
-       SUM(f.valor_facturado) AS valor_facturado,
-       ROUND(100.0 * COUNT(*) / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS porcentaje_facturas
-FROM dw.fact_facturacion f JOIN dw.dim_cliente c USING (cliente_sk)
-GROUP BY c.estado_catalogo ORDER BY facturas DESC;
-```
-
-![PN16 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn16_facturas_sin_coincidencia.png)
-
-*PN16 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-53"></a>
 #### PN17. ¿Cuántos registros GPS carecen de grupo o SIM?
 
 **Interpretación:** 131 sin grupo y 45 sin SIM; las categorías pueden solaparse, por lo que no se deben sumar para contar casos únicos.
 
 **Visualización asociada:** Tarjetas GPS y consulta SQL.
 
-<details><summary>Consulta SQL y evidencia PN17</summary>
+<a name="figura-47"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn17_gps_sin_grupo_sim.png" alt="PN17 — Registros sin grupo o SIM">
+</p>
+<p align="center"><strong>Figura 47. PN17 — Registros sin grupo o SIM</strong></p>
+<p align="center"><em>Conteos de registros con información administrativa incompleta.</em></p>
 
-```sql
--- PN17. ¿Cuántos registros GPS carecen de grupo o SIM?
-SELECT COUNT(*) AS registros,
-       COUNT(*) FILTER (WHERE g.es_sin_grupo) AS sin_grupo,
-       COUNT(*) FILTER (WHERE NOT d.tiene_sim) AS sin_sim,
-       COUNT(*) FILTER (WHERE g.es_sin_grupo AND NOT d.tiene_sim) AS sin_ambos
-FROM dw.fact_estado_gps f
-JOIN dw.dim_grupo g USING (grupo_sk)
-JOIN dw.dim_dispositivo d USING (dispositivo_sk)
-WHERE f.fecha_reporte_sk = 20261119;
-```
-
-![PN17 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn17_gps_sin_grupo_sim.png)
-
-*PN17 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-54"></a>
 #### PN18. ¿Qué incidencias de calidad fueron detectadas en la última carga exitosa?
 
 **Interpretación:** Se contabilizan advertencias y rechazos de la última ejecución exitosa para no duplicar incidencias de cargas repetidas.
 
 **Visualización asociada:** Auditoría SQL.
 
-<details><summary>Consulta SQL y evidencia PN18</summary>
+<a name="figura-48"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn18_incidencias_calidad.png" alt="PN18 — Incidencias de calidad">
+</p>
+<p align="center"><strong>Figura 48. PN18 — Incidencias de calidad</strong></p>
+<p align="center"><em>Incidencias de calidad de la última ejecución exitosa.</em></p>
 
-```sql
--- PN18. ¿Qué incidencias de calidad fueron detectadas en la última carga exitosa?
--- Usar solo la última ejecución evita contabilizar nuevamente el mismo archivo.
-SELECT fuente, regla, severidad, COUNT(*) AS incidencias
-FROM audit.incidencia_etl
-WHERE ejecucion_sk = (SELECT MAX(ejecucion_sk) FROM audit.ejecucion_etl WHERE estado = 'EXITOSO')
-GROUP BY fuente, regla, severidad ORDER BY fuente, severidad, regla;
-```
-
-![PN18 — resultado de la consulta en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/pn18_incidencias_calidad.png)
-
-*PN18 — resultado de la consulta en PostgreSQL.*
-
-</details>
-
+<a name="seccion-55"></a>
 ## 9. Implementación y dashboards en Power BI
 
+<a name="seccion-56"></a>
 ### 9.1. Conexión y modelo semántico
 
 Power BI Desktop se conectó a PostgreSQL y utiliza las cuatro dimensiones y las dos tablas de hechos del esquema `dw`. El modelo semántico conserva relaciones de uno a muchos de dimensiones hacia hechos. La doble relación de fechas GPS requiere distinguir la relación de fecha de reporte de la de último registro; en Power BI una relación alternativa puede permanecer inactiva y activarse mediante DAX cuando sea necesario. Se debe verificar la configuración efectiva en la vista de modelo, evitando caminos ambiguos o relaciones directas entre hechos.
 
 Los filtros comerciales operan sobre la facturación; los operativos sobre la instantánea GPS. Se ordena el nombre de mes por su número y se utiliza la jerarquía Año → Trimestre → Mes → Fecha para las operaciones de navegación temporal. Las etiquetas de clientes y nombres de categorías se adaptaron para la presentación sin modificar las reglas de negocio originales.
 
-> **Captura pendiente:** Conexión a PostgreSQL en Power BI.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/powerbi_conexion_postgresql.png`
+<a name="figura-49"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_conexion_postgresql.png" alt="Conexión a PostgreSQL en Power BI">
+</p>
+<p align="center"><strong>Figura 49. Conexión a PostgreSQL en Power BI</strong></p>
+<p align="center"><em>Origen PostgreSQL utilizado por Power BI Desktop.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Conexión a PostgreSQL en Power BI](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_conexion_postgresql.png)
--->
+<a name="figura-50"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_modelo_constelacion.png" alt="Modelo semántico y cardinalidades">
+</p>
+<p align="center"><strong>Figura 50. Modelo semántico y cardinalidades</strong></p>
+<p align="center"><em>Modelo semántico con tablas de hechos, dimensiones y relaciones.</em></p>
 
-*Conexión a PostgreSQL en Power BI.*
+<a name="figura-51"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_jerarquia_temporal.png" alt="Jerarquía temporal">
+</p>
+<p align="center"><strong>Figura 51. Jerarquía temporal</strong></p>
+<p align="center"><em>Jerarquía de año, trimestre, mes y fecha para la exploración.</em></p>
 
-![Modelo semántico y cardinalidades](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_modelo_constelacion.png)
-
-*Modelo semántico y cardinalidades.*
-
-> **Captura pendiente:** Jerarquía temporal.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/powerbi_jerarquia_temporal.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Jerarquía temporal](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_jerarquia_temporal.png)
--->
-
-*Jerarquía temporal.*
-
+<a name="seccion-57"></a>
 ### 9.2. Medidas e indicadores
 
 | Indicador | Definición |
@@ -1212,115 +1161,206 @@ Los filtros comerciales operan sobre la facturación; los operativos sobre la in
 | GPS más de 30 días | Recuento con `dias_sin_registro > 30` |
 | Grupos identificados | Recuento distinto de grupos excluyendo el miembro `SIN GRUPO` |
 
-Ejemplos equivalentes de medidas DAX básicas (la captura y el archivo PBIX documentan la implementación efectiva):
+<a name="seccion-58"></a>
+#### 9.2.1. Medidas comerciales
+
+La medida **Facturacion Total** se evidencia en la siguiente captura de Power BI.
+
+<a name="figura-52"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_medidas_dax_comerciales.png" alt="Medida DAX Facturacion Total">
+</p>
+<p align="center"><strong>Figura 52. Medida DAX Facturacion Total</strong></p>
+<p align="center"><em>Definición de la medida Facturacion Total mediante SUM sobre valor_facturado.</em></p>
+
+Las siguientes expresiones documentan las medidas restantes conforme a las instrucciones de implementación y las definiciones de negocio. Se presentan expresiones funcionalmente equivalentes cuando no se dispone de una captura de la fórmula individual; no constituyen una extracción literal del archivo PBIX.
+
+<a name="seccion-59"></a>
+##### Cantidad Facturas
+
+Cuenta las filas de facturas válidas, cuyo grano es una factura por fila.
 
 ```dax
-Facturacion Total = SUM(fact_facturacion[valor_facturado])
-Cantidad Facturas = SUM(fact_facturacion[cantidad_facturas])
-Ticket Promedio = DIVIDE([Facturacion Total], [Cantidad Facturas])
-Clientes Facturados = DISTINCTCOUNT(fact_facturacion[cliente_sk])
-Total Registros GPS = SUM(fact_estado_gps[cantidad_registros])
-GPS Sin Datos = CALCULATE([Total Registros GPS], fact_estado_gps[estado_datos] = "SIN_DATOS")
-Porcentaje GPS Sin Datos = DIVIDE([GPS Sin Datos], [Total Registros GPS])
+Cantidad Facturas = COUNTROWS(fact_facturacion)
 ```
 
-Los porcentajes, promedios y recuentos distintos son medidas no aditivas; deben recalcularse según el contexto de filtros. Seleccionar únicamente la categoría sin datos puede alterar el denominador y producir 100 %, por lo que para comparar tasas entre grupos se deben mantener abiertos los filtros de estado y antigüedad, o definir explícitamente una medida con denominador fijo.
+<a name="seccion-60"></a>
+##### Clientes Facturados
 
-> **Captura pendiente:** Medidas DAX comerciales.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/powerbi_medidas_dax_comerciales.png`
+Cuenta las claves distintas de cliente presentes en las facturas del contexto de filtros.
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Medidas DAX comerciales](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_medidas_dax_comerciales.png)
--->
+```dax
+Clientes Facturados = DISTINCTCOUNT(fact_facturacion[cliente_sk])
+```
 
-*Medidas DAX comerciales.*
+<a name="seccion-61"></a>
+##### Ticket Promedio
 
-> **Captura pendiente:** Medidas DAX operativas GPS.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/powerbi_medidas_dax_gps.png`
+Calcula el importe promedio por factura.
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Medidas DAX operativas GPS](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/powerbi_medidas_dax_gps.png)
--->
+```dax
+Ticket Promedio = DIVIDE([Facturacion Total], [Cantidad Facturas], 0)
+```
 
-*Medidas DAX operativas GPS.*
+<a name="seccion-62"></a>
+##### Crecimiento Interanual
 
+Compara enero–octubre de 2025 y 2026, excluyendo noviembre parcial. Las dos primeras medidas son auxiliares; el indicador compara períodos fijos y elimina los filtros de la dimensión fecha.
+
+```dax
+Facturacion Ene Oct 2025 =
+CALCULATE(
+    [Facturacion Total],
+    FILTER(ALL(dim_fecha), dim_fecha[anio] = 2025 && dim_fecha[mes] <= 10)
+)
+
+Facturacion Ene Oct 2026 =
+CALCULATE(
+    [Facturacion Total],
+    FILTER(ALL(dim_fecha), dim_fecha[anio] = 2026 && dim_fecha[mes] <= 10)
+)
+
+Crecimiento Interanual =
+DIVIDE(
+    [Facturacion Ene Oct 2026] - [Facturacion Ene Oct 2025],
+    [Facturacion Ene Oct 2025]
+)
+```
+
+<a name="seccion-63"></a>
+##### Concentracion Top 10
+
+La medida auxiliar obtiene el importe de los diez clientes con mayor facturación en el contexto de selección; la clave de cliente resuelve empates. La segunda calcula su participación en la facturación total del contexto.
+
+```dax
+Facturacion Top 10 =
+VAR TopClientes =
+    TOPN(
+        10,
+        ADDCOLUMNS(
+            VALUES(dim_cliente[cliente_sk]),
+            "@Facturacion", [Facturacion Total]
+        ),
+        [@Facturacion], DESC,
+        dim_cliente[cliente_sk], ASC
+    )
+RETURN
+    SUMX(TopClientes, [@Facturacion])
+
+Concentracion Top 10 =
+DIVIDE([Facturacion Top 10], [Facturacion Total], 0)
+```
+
+<a name="seccion-64"></a>
+##### Facturas Sin Coincidencia
+
+Cuenta las facturas vinculadas a miembros cuyo nombre no coincide con el catálogo de clientes.
+
+```dax
+Facturas Sin Coincidencia =
+CALCULATE(
+    [Cantidad Facturas],
+    dim_cliente[estado_catalogo] = "SIN_COINCIDENCIA"
+)
+```
+
+<a name="seccion-65"></a>
+##### Porcentaje Facturas Sin Coincidencia
+
+Calcula la proporción de facturas sin coincidencia respecto al total del contexto.
+
+```dax
+Porcentaje Facturas Sin Coincidencia =
+DIVIDE([Facturas Sin Coincidencia], [Cantidad Facturas], 0)
+```
+
+<a name="seccion-66"></a>
+#### 9.2.2. Medidas operativas GPS
+
+Las medidas operativas se documentan mediante sus definiciones y expresiones DAX de referencia.
+
+```dax
+Total Registros GPS = SUM(fact_estado_gps[cantidad_registros])
+
+GPS Sin Datos =
+CALCULATE([Total Registros GPS], fact_estado_gps[estado_datos] = "SIN_DATOS")
+
+Porcentaje GPS Sin Datos =
+DIVIDE([GPS Sin Datos], [Total Registros GPS])
+```
+
+Los porcentajes, promedios y recuentos distintos son medidas no aditivas; se recalculan según el contexto de filtros. Seleccionar únicamente la categoría sin datos puede alterar el denominador y producir 100 %. Para comparar tasas entre grupos, se deben mantener abiertos los filtros de estado y antigüedad, o definir una medida con denominador fijo.
+
+<a name="seccion-67"></a>
 ### 9.3. Diseño UI/UX
 
-Las cuatro páginas utilizan un encabezado con navegación, fondo claro, tarjetas blancas, tipografía Segoe UI y colores consistentes. El color azul corporativo propuesto (`#12355B`) representa información comercial; gris azulado (`#94A3B8`) distingue períodos anteriores; verde y naranja (`#84B83E`, `#D97706`) representan disponibilidad y ausencia de información. El rojo se reserva para priorizar registros de antigüedad elevada. Los colores constituyen decisiones visuales del proyecto, no niveles de servicio oficiales.
+Las cuatro páginas utilizan un encabezado con navegación, fondo claro, tarjetas blancas, tipografía Segoe UI y colores consistentes. El color azul corporativo propuesto (`#12355B`) representa información comercial; gris azulado (`#94A3B8`) distingue períodos anteriores; verde y naranja (`#84B83E`, `#D97706`) representan disponibilidad y ausencia de información. El rojo se emplea para destacar los registros de antigüedad elevada; en la matriz de priorización se aplican reglas de color para distinguir la proporción de registros sin datos. Los colores constituyen decisiones visuales del proyecto, no niveles de servicio oficiales.
 
 Se aplicaron principios de jerarquía, contraste, alineación, agrupación, consistencia y reducción de carga cognitiva. Los gráficos incluyen etiquetas textuales y los filtros facilitan la exploración; el menú indica la página activa. El diseño distingue facturación, calidad operativa y análisis OLAP, evitando repetir visualizaciones sin una finalidad específica.
 
+<a name="seccion-68"></a>
 ### 9.4. Página 01 — Resumen ejecutivo
 
 Presenta los indicadores generales de facturación, cantidad de facturas, ticket promedio, crecimiento comparable, registros GPS y porcentaje sin información. El gráfico de líneas compara meses entre años; las columnas presentan importes anuales registrados, y el anillo muestra disponibilidad GPS. Responde principalmente PN01, PN02, PN05, PN07, PN09 y PN11.
 
 **Interpretación:** el valor facturado creció entre períodos equivalentes, mientras que el reporte GPS evidencia una importante falta de información. Los dos procesos son independientes: no se afirma que la situación GPS explique los ingresos.
 
-> **Captura pendiente:** Dashboard final — Resumen ejecutivo.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/dashboard_resumen_ejecutivo.png`
+<a name="figura-53"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_resumen_ejecutivo.png" alt="Dashboard final — Resumen ejecutivo">
+</p>
+<p align="center"><strong>Figura 53. Dashboard final — Resumen ejecutivo</strong></p>
+<p align="center"><em>Indicadores generales, evolución mensual, comparación anual y disponibilidad GPS.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dashboard final — Resumen ejecutivo](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_resumen_ejecutivo.png)
--->
-
-*Dashboard final — Resumen ejecutivo.*
-
+<a name="seccion-69"></a>
 ### 9.5. Página 02 — Análisis comercial
 
 Incluye segmentadores por año, trimestre, mes y cliente; tarjetas de facturación, facturas, clientes, ticket y concentración; gráfico temporal jerárquico, ranking Top 10, matriz mensual y calidad de coincidencia con catálogo, según la configuración final. Permite responder PN01–PN08 y PN16 mediante consultas, filtros y visualizaciones.
 
 **Interpretación:** el ranking identifica la concentración de facturación, mientras que la matriz permite comparar períodos. La clasificación de catálogo muestra las limitaciones del cruce de nombres y permite plantear mejoras en el registro de clientes. La comparación anual completa no debe confundirse con el indicador comparable enero–octubre.
 
-> **Captura pendiente:** Dashboard final — Análisis comercial.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/dashboard_analisis_comercial.png`
+<a name="figura-54"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_analisis_comercial.png" alt="Dashboard final — Análisis comercial">
+</p>
+<p align="center"><strong>Figura 54. Dashboard final — Análisis comercial</strong></p>
+<p align="center"><em>Segmentadores, indicadores comerciales, ranking de clientes, matriz mensual y calidad del catálogo.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dashboard final — Análisis comercial](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_analisis_comercial.png)
--->
-
-*Dashboard final — Análisis comercial.*
-
+<a name="seccion-70"></a>
 ### 9.6. Página 03 — Análisis operativo GPS
 
 Presenta indicadores de registros, grupos, disponibilidad, antigüedad elevada y ausencia de grupo. Los segmentadores permiten explorar grupos, estados y rangos de antigüedad. Los gráficos de anillos y barras, junto con la matriz operativa y su formato condicional, permiten priorizar casos para revisión. Responde principalmente PN09–PN14 y PN17; PN15 se complementa con SQL.
 
 **Interpretación:** comparar la cantidad y proporción de registros sin información permite dimensionar el volumen y la intensidad del problema. La fecha de referencia es el 19/11/2026; no se representa una conexión en vivo con los GPS.
 
-> **Captura pendiente:** Dashboard final — Análisis operativo GPS.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/dashboard_operativo_gps.png`
+<a name="figura-55"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_operativo_gps.png" alt="Dashboard final — Análisis operativo GPS">
+</p>
+<p align="center"><strong>Figura 55. Dashboard final — Análisis operativo GPS</strong></p>
+<p align="center"><em>Disponibilidad, antigüedad, distribución por grupo y matriz de análisis operativo.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dashboard final — Análisis operativo GPS](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_operativo_gps.png)
--->
-
-*Dashboard final — Análisis operativo GPS.*
-
+<a name="seccion-71"></a>
 ### 9.7. Página 04 — Análisis multidimensional OLAP
 
 Se utiliza un objeto visual tridimensional DataCube 3D para explorar la facturación por año, trimestre y cliente. Cada celda representa la agregación de `valor_facturado` para una combinación de esos atributos. Los segmentadores permiten Slice y Dice; el intercambio de campos de los ejes permite Pivot. La escala secuencial facilita distinguir importes de menor a mayor. La rotación y el zoom son ayudas visuales, no operaciones OLAP independientes.
 
-Se priorizó un cubo principal de mayor tamaño y una guía de uso. Si la tarjeta lateral muestra facturación según segmentadores, su valor puede incluir clientes fuera del filtro Top 10 aplicado exclusivamente al cubo; no debe interpretarse automáticamente como la suma de sus celdas. El título o una nota deben indicar ese alcance. El Top 10 del cubo debe basarse en Facturación total, no en una agregación de la etiqueta del cliente.
+La versión final concentra la exploración en un cubo principal de gran tamaño y tres segmentadores laterales. El alcance del visual depende de sus filtros, incluido el Top 10 si se encuentra aplicado. La escala de color y el detalle de cada celda permiten interpretar la facturación.
 
-> **Captura pendiente:** Dashboard final — Análisis multidimensional OLAP.
->
-> Archivo: `Intertel_BI/docs/capturas/06_power_bi/dashboard_analisis_olap.png`
+<a name="figura-56"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_analisis_olap.png" alt="Dashboard final — Análisis multidimensional OLAP">
+</p>
+<p align="center"><strong>Figura 56. Dashboard final — Análisis multidimensional OLAP</strong></p>
+<p align="center"><em>Cubo tridimensional de facturación con segmentadores de año, trimestre y cliente.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dashboard final — Análisis multidimensional OLAP](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/06_power_bi/dashboard_analisis_olap.png)
--->
-
-*Dashboard final — Análisis multidimensional OLAP.*
-
+<a name="seccion-72"></a>
 ## 10. Análisis OLAP
 
+<a name="seccion-73"></a>
 ### 10.1. Operaciones implementadas mediante SQL (ROLAP)
 
-El análisis multidimensional se realiza sobre las tablas relacionales de PostgreSQL mediante el script `06_intertel_consultas_olap.sql`. No se implementó un servidor MOLAP independiente. `ROLLUP`, `CUBE` y `GROUPING SETS` generan agregaciones a distintos niveles; `GROUPING` permite distinguir las filas agregadas de los valores nulos reales.
+El análisis multidimensional se realiza sobre las tablas relacionales de PostgreSQL mediante el script `06_intertel_consultas_olap.sql`. No se implementó un servidor MOLAP independiente. El código íntegro está disponible en [06_intertel_consultas_olap.sql](postgresql/06_intertel_consultas_olap.sql); las figuras muestran las ejecuciones disponibles. `ROLLUP`, `CUBE` y `GROUPING SETS` generan agregaciones a distintos niveles; `GROUPING` permite distinguir las filas agregadas de los valores nulos reales.
 
 | Operación | Bloque | Aplicación al negocio |
 |---|---|---|
@@ -1332,186 +1372,56 @@ El análisis multidimensional se realiza sobre las tablas relacionales de Postgr
 | Cube | OLAP06 | Obtener combinaciones y subtotales de grupo y estado GPS |
 | Grouping sets | OLAP07 | Seleccionar agrupaciones por año, estado y total |
 
-<details><summary>OLAP01 — Roll-up: consulta y resultado</summary>
+<a name="figura-57"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_roll_up.png" alt="Roll-up ejecutado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 57. Roll-up ejecutado en PostgreSQL</strong></p>
+<p align="center"><em>Agregación jerárquica por mes, trimestre, año y total mediante ROLLUP.</em></p>
 
-```sql
--- OLAP01 | ROLL-UP: facturación desde mes a trimestre, año y total general.
-SELECT d.anio, d.trimestre, d.mes,
-       CASE GROUPING(d.anio, d.trimestre, d.mes)
-         WHEN 0 THEN 'MES' WHEN 1 THEN 'TRIMESTRE'
-         WHEN 3 THEN 'AÑO' WHEN 7 THEN 'TOTAL GENERAL' END AS nivel,
-       SUM(f.valor_facturado) AS total_facturado,
-       COUNT(*) AS facturas
-FROM dw.fact_facturacion f JOIN dw.dim_fecha d USING (fecha_sk)
-GROUP BY ROLLUP (d.anio, d.trimestre, d.mes)
-ORDER BY d.anio NULLS LAST, d.trimestre NULLS LAST, d.mes NULLS LAST;
-```
+<a name="figura-58"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drill_down.png" alt="Drill-down en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 58. Drill-down en PostgreSQL</strong></p>
+<p align="center"><em>Desglose de facturación de 2026 en niveles de mayor detalle.</em></p>
 
-![Roll-up ejecutado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_roll_up.png)
+<a name="figura-59"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_slice.png" alt="Slice ejecutado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 59. Slice ejecutado en PostgreSQL</strong></p>
+<p align="center"><em>Restricción del análisis a un año de facturación.</em></p>
 
-*Roll-up ejecutado en PostgreSQL.*
+<a name="figura-60"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_dice.png" alt="Dice ejecutado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 60. Dice ejecutado en PostgreSQL</strong></p>
+<p align="center"><em>Selección de un subconjunto mediante filtros de varias dimensiones.</em></p>
 
-</details>
+<a name="figura-61"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_pivot.png" alt="Pivot ejecutado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 61. Pivot ejecutado en PostgreSQL</strong></p>
+<p align="center"><em>Reorganización de períodos en filas y columnas para facilitar la comparación.</em></p>
 
-<details><summary>OLAP02 — Drill-down: consulta y resultado</summary>
+<a name="figura-62"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_cube.png" alt="Cube ejecutado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 62. Cube ejecutado en PostgreSQL</strong></p>
+<p align="center"><em>Agregaciones y subtotales de grupo y estado GPS mediante CUBE.</em></p>
 
-```sql
--- OLAP02 | DRILL-DOWN: partir del total anual 2026 y abrirlo por trimestre/mes.
--- Ejecutar las tres consultas en orden; para bajar a día, consultar d.fecha.
-SELECT d.anio, SUM(f.valor_facturado) AS total_facturado
-FROM dw.fact_facturacion f JOIN dw.dim_fecha d USING (fecha_sk)
-WHERE d.anio = 2026 GROUP BY d.anio;
+<a name="figura-63"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_grouping_sets.png" alt="Grouping sets ejecutado en PostgreSQL">
+</p>
+<p align="center"><strong>Figura 63. Grouping sets ejecutado en PostgreSQL</strong></p>
+<p align="center"><em>Obtención de agrupaciones específicas por año, estado y total general.</em></p>
 
-SELECT d.anio, d.trimestre, SUM(f.valor_facturado) AS total_facturado
-FROM dw.fact_facturacion f JOIN dw.dim_fecha d USING (fecha_sk)
-WHERE d.anio = 2026 GROUP BY d.anio, d.trimestre ORDER BY d.trimestre;
-
-SELECT d.anio, d.trimestre, d.mes, d.nombre_mes, SUM(f.valor_facturado) AS total_facturado
-FROM dw.fact_facturacion f JOIN dw.dim_fecha d USING (fecha_sk)
-WHERE d.anio = 2026 GROUP BY d.anio, d.trimestre, d.mes, d.nombre_mes ORDER BY d.mes;
-```
-
-![Evidencia disponible de Drill-down en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drill_down.png)
-
-*Evidencia de Drill-down disponible en el repositorio.*
-
-> **Captura pendiente:** Drill-down SQL — Nivel anual.
->
-> Archivo: `Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drilldown_anio.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Drill-down SQL — Nivel anual](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drilldown_anio.png)
--->
-
-*Drill-down SQL — Nivel anual.*
-
-> **Captura pendiente:** Drill-down SQL — Nivel trimestral.
->
-> Archivo: `Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drilldown_trimestre.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Drill-down SQL — Nivel trimestral](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drilldown_trimestre.png)
--->
-
-*Drill-down SQL — Nivel trimestral.*
-
-> **Captura pendiente:** Drill-down SQL — Nivel mensual.
->
-> Archivo: `Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drilldown_mes.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Drill-down SQL — Nivel mensual](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_drilldown_mes.png)
--->
-
-*Drill-down SQL — Nivel mensual.*
-
-</details>
-
-<details><summary>OLAP03 — Slice: consulta y resultado</summary>
-
-```sql
--- OLAP03 | SLICE: fijar una dimensión (año 2026).
-SELECT d.mes, d.nombre_mes, SUM(f.valor_facturado) AS total_facturado,
-       COUNT(*) AS facturas
-FROM dw.fact_facturacion f JOIN dw.dim_fecha d USING (fecha_sk)
-WHERE d.anio = 2026
-GROUP BY d.mes, d.nombre_mes ORDER BY d.mes;
-```
-
-![Slice ejecutado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_slice.png)
-
-*Slice ejecutado en PostgreSQL.*
-
-</details>
-
-<details><summary>OLAP04 — Dice: consulta y resultado</summary>
-
-```sql
--- OLAP04 | DICE: seleccionar varios valores en dos dimensiones.
--- Meses octubre y noviembre, años 2025/2026 y estados del catálogo seleccionados.
--- Noviembre 2026 es parcial; no interpretar como comparación de meses completos.
-SELECT d.anio, d.mes, c.estado_catalogo, SUM(f.valor_facturado) AS total_facturado,
-       COUNT(*) AS facturas
-FROM dw.fact_facturacion f
-JOIN dw.dim_fecha d USING (fecha_sk)
-JOIN dw.dim_cliente c USING (cliente_sk)
-WHERE d.anio IN (2025, 2026) AND d.mes IN (10, 11)
-  AND c.estado_catalogo IN ('COINCIDENCIA_UNICA', 'SIN_COINCIDENCIA')
-GROUP BY d.anio, d.mes, c.estado_catalogo
-ORDER BY d.anio, d.mes, c.estado_catalogo;
-```
-
-![Dice ejecutado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_dice.png)
-
-*Dice ejecutado en PostgreSQL.*
-
-</details>
-
-<details><summary>OLAP05 — Pivot: consulta y resultado</summary>
-
-```sql
--- OLAP05 | PIVOT: poner los años en columnas, meses en filas.
--- Enero-octubre de ambos años para comparar períodos equivalentes.
-SELECT d.mes, d.nombre_mes,
-       SUM(f.valor_facturado) FILTER (WHERE d.anio = 2025) AS facturado_2025,
-       SUM(f.valor_facturado) FILTER (WHERE d.anio = 2026) AS facturado_2026
-FROM dw.fact_facturacion f JOIN dw.dim_fecha d USING (fecha_sk)
-WHERE d.anio IN (2025, 2026) AND d.mes BETWEEN 1 AND 10
-GROUP BY d.mes, d.nombre_mes ORDER BY d.mes;
-```
-
-![Pivot ejecutado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_pivot.png)
-
-*Pivot ejecutado en PostgreSQL.*
-
-</details>
-
-<details><summary>OLAP06 — Cube: consulta y resultado</summary>
-
-```sql
--- OLAP06 | CUBE: todas las combinaciones de grupo y estado de datos GPS.
--- El filtro del reporte evita mezclar instantáneas de distintos días.
-SELECT CASE WHEN GROUPING(g.grupo_sk) = 1 THEN 'TODOS LOS GRUPOS'
-            ELSE g.nombre_grupo END AS grupo,
-       CASE WHEN GROUPING(f.estado_datos) = 1 THEN 'TODOS LOS ESTADOS'
-            ELSE f.estado_datos END AS estado,
-       GROUPING(g.grupo_sk, f.estado_datos) AS nivel_agrupacion,
-       COUNT(*) AS registros
-FROM dw.fact_estado_gps f JOIN dw.dim_grupo g USING (grupo_sk)
-WHERE f.fecha_reporte_sk = 20261119
-GROUP BY CUBE ((g.grupo_sk, g.nombre_grupo), f.estado_datos)
-ORDER BY nivel_agrupacion, grupo, estado;
-```
-
-![Cube ejecutado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_cube.png)
-
-*Cube ejecutado en PostgreSQL.*
-
-</details>
-
-<details><summary>OLAP07 — Grouping sets: consulta y resultado</summary>
-
-```sql
--- OLAP07 | GROUPING SETS: elegir explícitamente los niveles de agregación.
-SELECT d.anio, c.estado_catalogo,
-       CASE GROUPING(d.anio, c.estado_catalogo)
-         WHEN 0 THEN 'AÑO Y ESTADO' WHEN 1 THEN 'AÑO'
-         WHEN 2 THEN 'ESTADO' WHEN 3 THEN 'TOTAL GENERAL' END AS nivel,
-       SUM(f.valor_facturado) AS total_facturado,
-       COUNT(*) AS facturas
-FROM dw.fact_facturacion f
-JOIN dw.dim_fecha d USING (fecha_sk)
-JOIN dw.dim_cliente c USING (cliente_sk)
-GROUP BY GROUPING SETS ((d.anio, c.estado_catalogo), (d.anio), (c.estado_catalogo), ())
-ORDER BY GROUPING(d.anio, c.estado_catalogo), d.anio, c.estado_catalogo;
-```
-
-![Grouping sets ejecutado en PostgreSQL](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/05_consultas_negocio/sql_olap_grouping_sets.png)
-
-*Grouping sets ejecutado en PostgreSQL.*
-
-</details>
-
+<a name="seccion-74"></a>
 ### 10.2. Operaciones interactivas en Power BI
 
 | Operación | Procedimiento | Interpretación |
@@ -1524,192 +1434,109 @@ ORDER BY GROUPING(d.anio, c.estado_catalogo), d.anio, c.estado_catalogo;
 
 En el análisis comercial, el tercer trimestre de 2026 acumula USD 29.746,68: julio USD 12.480,55, agosto USD 4.746,17 y septiembre USD 12.519,96. El Drill-down permite identificar agosto como el mes de menor facturación del trimestre; el Roll-up vuelve a mostrar el total trimestral. El ejemplo no demuestra por sí mismo las causas de la caída.
 
-**Evidencias principales:**
+**Evidencias de las operaciones interactivas:**
 
-> **Captura pendiente:** Drill-down: año a trimestre.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_trimestre.png`
+<a name="figura-64"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_trimestre.png" alt="Drill-down: año a trimestre">
+</p>
+<p align="center"><strong>Figura 64. Drill-down: año a trimestre</strong></p>
+<p align="center"><em>Desglose de un año en sus trimestres.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Drill-down: año a trimestre](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_trimestre.png)
--->
+<a name="figura-65"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_mes.png" alt="Drill-down: trimestre a mes">
+</p>
+<p align="center"><strong>Figura 65. Drill-down: trimestre a mes</strong></p>
+<p align="center"><em>Desglose de un trimestre en meses.</em></p>
 
-*Drill-down: año a trimestre.*
+<a name="figura-66"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_rollup_anual.png" alt="Roll-up: retorno al nivel anual">
+</p>
+<p align="center"><strong>Figura 66. Roll-up: retorno al nivel anual</strong></p>
+<p align="center"><em>Retorno a una vista agregada por año.</em></p>
 
-> **Captura pendiente:** Drill-down: trimestre a mes.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_mes.png`
+<a name="figura-67"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_slice.png" alt="Slice: cubo filtrado por año">
+</p>
+<p align="center"><strong>Figura 67. Slice: cubo filtrado por año</strong></p>
+<p align="center"><em>Reducción del cubo mediante la selección de un año.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Drill-down: trimestre a mes](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_mes.png)
--->
+<a name="figura-68"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_dice.png" alt="Dice: combinación de filtros">
+</p>
+<p align="center"><strong>Figura 68. Dice: combinación de filtros</strong></p>
+<p align="center"><em>Exploración de un subconjunto mediante filtros combinados.</em></p>
 
-*Drill-down: trimestre a mes.*
+<a name="figura-69"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_nivel_anual.png" alt="Nivel anual inicial">
+</p>
+<p align="center"><strong>Figura 69. Nivel anual inicial</strong></p>
+<p align="center"><em>Vista de partida del gráfico comercial en el nivel de años.</em></p>
 
-> **Captura pendiente:** Roll-up: retorno al nivel anual.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_rollup_anual.png`
+<a name="figura-70"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_fecha.png" alt="Drill-down hasta fecha">
+</p>
+<p align="center"><strong>Figura 70. Drill-down hasta fecha</strong></p>
+<p align="center"><em>Exploración del nivel diario de la jerarquía temporal.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Roll-up: retorno al nivel anual](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_rollup_anual.png)
--->
+<a name="figura-71"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_slice_comercial.png" alt="Slice comercial">
+</p>
+<p align="center"><strong>Figura 71. Slice comercial</strong></p>
+<p align="center"><em>Filtrado de la facturación por una dimensión temporal.</em></p>
 
-*Roll-up: retorno al nivel anual.*
+<a name="figura-72"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_dice_comercial.png" alt="Dice comercial">
+</p>
+<p align="center"><strong>Figura 72. Dice comercial</strong></p>
+<p align="center"><em>Combinación de filtros comerciales para explorar un subconjunto.</em></p>
 
-> **Captura pendiente:** Slice: cubo filtrado por año.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_slice.png`
+<a name="figura-73"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_slice_grupo_gps.png" alt="Slice operativo por grupo">
+</p>
+<p align="center"><strong>Figura 73. Slice operativo por grupo</strong></p>
+<p align="center"><em>Selección de un grupo para analizar sus registros operativos.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Slice: cubo filtrado por año](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_slice.png)
--->
+<a name="figura-74"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_dice_gps.png" alt="Dice operativo por grupo, estado y antigüedad">
+</p>
+<p align="center"><strong>Figura 74. Dice operativo por grupo, estado y antigüedad</strong></p>
+<p align="center"><em>Combinación de grupo 14 ENERO, estado sin información y rango sin datos; devuelve 21 registros.</em></p>
 
-*Slice: cubo filtrado por año.*
+<a name="figura-75"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_priorizacion_grupos.png" alt="Priorización por porcentaje de ausencia de información">
+</p>
+<p align="center"><strong>Figura 75. Priorización por porcentaje de ausencia de información</strong></p>
+<p align="center"><em>Matriz ordenada por porcentaje de registros sin datos para orientar la revisión.</em></p>
 
-> **Captura pendiente:** Dice: combinación de filtros.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_dice.png`
+<a name="figura-76"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_completo.png" alt="Cubo completo según el alcance de filtros">
+</p>
+<p align="center"><strong>Figura 76. Cubo completo según el alcance de filtros</strong></p>
+<p align="center"><em>Vista general del cubo de facturación dentro del alcance de sus filtros.</em></p>
 
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dice: combinación de filtros](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_dice.png)
--->
+<a name="figura-77"></a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_detalle_celda.png" alt="Detalle de una celda del cubo">
+</p>
+<p align="center"><strong>Figura 77. Detalle de una celda del cubo</strong></p>
+<p align="center"><em>Detalle de una combinación de dimensiones y su importe de facturación.</em></p>
 
-*Dice: combinación de filtros.*
+La operación Pivot se documenta mediante la ejecución SQL de OLAP05 de la sección 10.1. El procedimiento de intercambio de dimensiones en Power BI se describe en la tabla anterior, sin atribuirle una evidencia gráfica adicional. La rotación es una ayuda visual distinta de Pivot.
 
-> **Captura pendiente:** Pivot: intercambio de dimensiones del cubo.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_pivot.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Pivot: intercambio de dimensiones del cubo](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_pivot.png)
--->
-
-*Pivot: intercambio de dimensiones del cubo.*
-
-<details><summary>Ver evidencias complementarias de las operaciones OLAP</summary>
-
-> **Captura pendiente:** Nivel anual inicial.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_nivel_anual.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Nivel anual inicial](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_nivel_anual.png)
--->
-
-*Nivel anual inicial.*
-
-> **Captura pendiente:** Drill-down hasta fecha.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_fecha.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Drill-down hasta fecha](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_drilldown_fecha.png)
--->
-
-*Drill-down hasta fecha.*
-
-> **Captura pendiente:** Slice comercial.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_slice_comercial.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Slice comercial](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_slice_comercial.png)
--->
-
-*Slice comercial.*
-
-> **Captura pendiente:** Dice comercial.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_dice_comercial.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dice comercial](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_dice_comercial.png)
--->
-
-*Dice comercial.*
-
-> **Captura pendiente:** Matriz original: meses en filas.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_pivot_matriz_original.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Matriz original: meses en filas](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_pivot_matriz_original.png)
--->
-
-*Matriz original: meses en filas.*
-
-> **Captura pendiente:** Matriz con ejes intercambiados.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_pivot_matriz_transformada.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Matriz con ejes intercambiados](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_pivot_matriz_transformada.png)
--->
-
-*Matriz con ejes intercambiados.*
-
-> **Captura pendiente:** Slice operativo por grupo.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_slice_grupo_gps.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Slice operativo por grupo](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_slice_grupo_gps.png)
--->
-
-*Slice operativo por grupo.*
-
-> **Captura pendiente:** Dice operativo por grupo, estado y antigüedad.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_dice_gps.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Dice operativo por grupo, estado y antigüedad](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_dice_gps.png)
--->
-
-*Dice operativo por grupo, estado y antigüedad.*
-
-> **Captura pendiente:** Priorización por porcentaje de ausencia de información.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/olap_priorizacion_grupos.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Priorización por porcentaje de ausencia de información](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/olap_priorizacion_grupos.png)
--->
-
-*Priorización por porcentaje de ausencia de información.*
-
-> **Captura pendiente:** Cubo completo según el alcance de filtros.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_completo.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Cubo completo según el alcance de filtros](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_completo.png)
--->
-
-*Cubo completo según el alcance de filtros.*
-
-> **Captura pendiente:** Rotación tridimensional (ayuda visual).
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_rotacion.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Rotación tridimensional (ayuda visual)](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_rotacion.png)
--->
-
-*Rotación tridimensional (ayuda visual).*
-
-> **Captura pendiente:** Detalle de una celda del cubo.
->
-> Archivo: `Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_detalle_celda.png`
-
-<!-- Cuando se suba la captura, sustituir el bloque anterior por la línea siguiente, sin los delimitadores de comentario:
-![Detalle de una celda del cubo](https://raw.githubusercontent.com/Nestor-Sarmiento/business-intelligence-grupob/main/Intertel_BI/docs/capturas/07_operaciones_olap/cubo_olap_detalle_celda.png)
--->
-
-*Detalle de una celda del cubo.*
-
-</details>
-
+<a name="seccion-75"></a>
 ## 11. Insights y recomendaciones
 
 | Hallazgo cuantitativo | Interpretación | Recomendación | Indicador de seguimiento |
@@ -1722,6 +1549,7 @@ En el análisis comercial, el tercer trimestre de 2026 acumula USD 29.746,68: ju
 | 640 facturas sin coincidencia (38,88 %) | Debilidad del vínculo por nombre con el catálogo | Usar identificador único y depurar homónimos, duplicados y discrepancias | Tasa de facturas con coincidencia inequívoca |
 | 131 registros sin grupo; 45 sin dato SIM | Información administrativa incompleta | Completar identificadores y asignaciones en la fuente, con revisión de datos sensibles | Proporción de registros sin grupo o SIM |
 
+<a name="seccion-76"></a>
 ### 11.1. Priorización sugerida
 
 **Primero**, confirmar con el cliente qué representa el reporte GPS (por ejemplo, si es un listado de equipos fuera de línea o de un subconjunto), antes de generalizar el 72,07 % a la flota. Revisar los grupos con más registros sin información y con mayor antigüedad.
@@ -1730,6 +1558,7 @@ En el análisis comercial, el tercer trimestre de 2026 acumula USD 29.746,68: ju
 
 **Tercero**, establecer un seguimiento mensual de facturación comparable, de concentración y de calidad de información. Definir metas y umbrales con Intertel, en lugar de considerar los rangos visuales como acuerdos de servicio.
 
+<a name="seccion-77"></a>
 ## 12. Limitaciones y trabajo futuro
 
 | Pregunta o análisis no resuelto | Información necesaria |
@@ -1744,6 +1573,7 @@ En el análisis comercial, el tercer trimestre de 2026 acumula USD 29.746,68: ju
 
 Como mejora futura se propone establecer exportaciones periódicas estandarizadas o acceso de solo lectura a los sistemas de origen, utilizar identificadores estables de clientes y dispositivos y agregar información contractual. Cuando existan nuevas fuentes autorizadas, podrán incorporarse dimensiones de plan, producto y geografía mediante relaciones válidas. También se recomienda implementar una estrategia transaccional de sustitución o carga incremental, pruebas automatizadas de duplicación, auditoría por fecha de reporte y programación del Job con actualización de Power BI. Estas ampliaciones no forman parte de los resultados demostrados en la entrega actual.
 
+<a name="seccion-78"></a>
 ## 13. Conclusiones
 
 1. Se implementó una solución de BI local que integra los archivos de Intertel en un Data Warehouse con dos procesos de negocio y cuatro dimensiones. El esquema de constelación respeta las distintas granularidades de facturación y GPS y evita vínculos sin soporte en las fuentes.
@@ -1753,6 +1583,7 @@ Como mejora futura se propone establecer exportaciones periódicas estandarizada
 5. Las operaciones OLAP permiten cambiar niveles de detalle, filtrar subconjuntos y reorganizar dimensiones. El cubo tridimensional complementa, pero no sustituye, las consultas relacionales y las visualizaciones convencionales.
 6. La calidad y disponibilidad de las fuentes condicionan el alcance de las conclusiones. La incorporación de identificadores únicos, detalle contractual y reportes históricos permitirá ampliar el análisis y fortalecer su utilidad para la toma de decisiones.
 
+<a name="seccion-79"></a>
 ## 14. Bibliografía
 
 - Escuela Politécnica Nacional, Facultad de Ingeniería de Sistemas. (2026). *Proyecto Primer Bimestre — Business Intelligence*. Instrucciones y rúbrica de evaluación de la asignatura.
